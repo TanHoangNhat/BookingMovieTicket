@@ -1,0 +1,87 @@
+.header .header__navbar {
+  background-color: #fffffff2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+}
+
+.header .header__navbar .navbar__left {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.header .header__navbar .navbar__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header .header__navbar .navbar__right {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+}
+
+.navbar__center .navbar__menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.4rem;
+}
+
+.navbar__center .navbar__menu .menu__item a {
+  text-decoration: none;
+  text-align: center;
+  margin: 0 1rem;
+  color: #000;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.navbar__center .navbar__menu .menu__item a:hover {
+  color: #fb4226;
+}
+
+.navbar__right .user__id {
+  display: flex;
+  align-items: center;
+  height: 120px;
+  text-decoration: none;
+  color: #9b9b9b;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.navbar__right .user__id img {
+  width: 3rem;
+  margin-right: 5px;
+  border-radius: 25px;
+}
+
+.navbar__right .user__id .user__menu {
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  right: 0;
+}
+
+.navbar__right .user__id .user__menu a {
+  border-radius: 5px;
+  background-color: #959595;
+  display: block;
+  padding: 0.5rem 2.5rem;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar__right .user__id .user__menu a:hover {
+  background-color: #888;
+}
+/*# sourceMappingURL=header.module.css.map */

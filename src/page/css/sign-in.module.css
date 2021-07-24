@@ -1,0 +1,186 @@
+.signIn__section {
+  width: 100vw;
+  height: 100vh;
+  background: url("../../asset/image/bg2.jpg") center;
+  background-size: contain;
+}
+
+.signIn__section .signIn__container .signIn__content {
+  position: absolute;
+  top: 50%;
+  bottom: unset;
+  left: 50%;
+  right: unset;
+  max-width: 360px;
+  padding: 35px;
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom, #14325de6, #081630e6);
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .signIn__section .signIn__container .signIn__content {
+    width: 80%;
+    padding: 1.5rem;
+  }
+}
+
+.signIn__section .signIn__container .signIn__content .esc__button {
+  position: absolute;
+  top: -16px;
+  bottom: unset;
+  left: unset;
+  right: -16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #081630;
+  box-shadow: 0 2px 10px 0 #00000080;
+  cursor: pointer;
+}
+
+.signIn__section .signIn__container .signIn__content .esc__button::before, .signIn__section .signIn__container .signIn__content .esc__button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  bottom: unset;
+  left: 50%;
+  right: unset;
+  width: 2px;
+  height: 16px;
+  background-color: #455570;
+}
+
+.signIn__section .signIn__container .signIn__content .esc__button::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.signIn__section .signIn__container .signIn__content .esc__button::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.signIn__section .signIn__container .signIn__content .content__header {
+  margin-bottom: 1.5rem;
+}
+
+.signIn__section .signIn__container .signIn__content .content__header .content__image {
+  display: block;
+  width: 70%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 320px) {
+  .signIn__section .signIn__container .signIn__content .content__header .content__image {
+    display: none;
+  }
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField {
+  position: relative;
+  margin: 0.8rem 0;
+  overflow: hidden;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formInput {
+  padding: 1rem;
+  width: 100%;
+  border: 2px solid #cacaca;
+  border-radius: 8px;
+  background-color: #cacaca;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formInput:focus {
+  outline: none;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formInput:focus + .formLabel,
+.signIn__section .signIn__container .signIn__content .content__body .formField .formInput:not(:placeholder-shown) + .formLabel {
+  transform: translateY(110%);
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formInput[error] {
+  border-left: 2px solid #f44336;
+}
+
+@media (max-width: 425px) {
+  .signIn__section .signIn__container .signIn__content .content__body .formField .formInput {
+    padding: 0.5rem;
+  }
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formLabel {
+  position: absolute;
+  top: 2px;
+  bottom: unset;
+  left: unset;
+  right: 2px;
+  width: calc(100% - 4px);
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  background-color: #081630;
+  color: #cacaca;
+  transition: 0.3s ease;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+}
+
+@media (max-width: 425px) {
+  .signIn__section .signIn__container .signIn__content .content__body .formField .formLabel {
+    padding: 0.5rem;
+  }
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .success {
+  border-left: 2px solid green;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .errorText {
+  position: absolute;
+  top: 0;
+  bottom: unset;
+  left: 0;
+  right: unset;
+  padding: 0 1rem;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 12px;
+  color: #f44336;
+  z-index: 10;
+  user-select: none;
+  pointer-events: none;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formButton {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #cacaca;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #081630;
+  background-image: linear-gradient(to left, #fa5238, #ff8664);
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formButton:focus {
+  outline: none;
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .formField .formButton:hover:enabled {
+  opacity: 1;
+}
+
+@media (max-width: 425px) {
+  .signIn__section .signIn__container .signIn__content .content__body .formField .formButton {
+    padding: 0.5rem;
+  }
+}
+
+.signIn__section .signIn__container .signIn__content .content__body .signUp__link {
+  font-style: italic;
+  text-decoration: none;
+}
+/*# sourceMappingURL=sign-in.module.css.map */

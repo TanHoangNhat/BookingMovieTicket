@@ -1,0 +1,13 @@
+.sidebar__link {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.sidebar__link:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar__link__active {
+  color: black;
+}
+/*# sourceMappingURL=sidebar.module.css.map */

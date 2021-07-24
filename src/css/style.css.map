@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAAA,UAAU;EACR,WAAW,EAAE,EAAE;EACf,GAAG,EAAE,6CAA6C;;;AAGpD,AAAA,CAAC,CAAC;EACA,UAAU,EAAE,UAAU;EACtB,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;CACV;;AAED,AAAA,IAAI,CAAC;EACH,SAAS,EAAE,KAAK;CACjB;;AAED,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,aAAa;CAC3B",
+    "sources": [
+        "../asset/style.scss",
+        "../asset/basicSCSS/responsive.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}

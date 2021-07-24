@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,CAAC,mBAAmB,CAAA;EAClC,IAAI,EAAE,KAAK;CACd",
+    "sources": [
+        "../basicSCSS/booking.scss"
+    ],
+    "names": [],
+    "file": "booking.css"
+}

@@ -1,0 +1,54 @@
+.backGroundDetail {
+  width: 100%;
+  height: 1000px;
+  display: relative;
+  z-index: 1;
+  opacity: 0.4;
+  object-fit: cover;
+}
+
+.children {
+  display: absolute;
+  z-index: 2;
+  top: 20px;
+}
+
+.children .detail_movie {
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: 300px auto auto;
+  gap: 10px;
+  transform: translate(20%);
+}
+
+.children .detail_movie .detail_movie_child {
+  align-self: center;
+  gap: 10px;
+}
+
+.detail_text {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 100px;
+  transform: translate(20%);
+  z-index: 3;
+  margin-top: 100px;
+}
+
+.detail_tableInfo {
+  margin-top: 70px;
+  transform: translate(10%, 0);
+}
+
+.barTab {
+  display: absolute;
+  z-index: 5;
+  transform: translate(100%, 0);
+  border: 0.1px solid rgba(255, 255, 255, 0.767);
+}
+
+.barTab .MuiTabs-flexContainer {
+  background-color: #4d1e4e;
+  color: white;
+}
+/*# sourceMappingURL=detail.css.map */
