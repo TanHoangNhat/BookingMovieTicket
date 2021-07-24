@@ -7,7 +7,7 @@ function SampleNextArrow(props) {
     <div
       className={className}
       style={{
-        ...style,
+        ...style
       }}
       onClick={onClick}
     />
@@ -19,7 +19,7 @@ function SamplePrevArrow(props) {
     <div
       className={className}
       style={{
-        ...style,
+        ...style
       }}
       onClick={onClick}
     />
@@ -35,7 +35,7 @@ export default function Carousel() {
     slidesPerRow: 1,
     // autoplay: true,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    prevArrow: <SamplePrevArrow />
   };
   return (
     <div>
@@ -44,7 +44,7 @@ export default function Carousel() {
         <div className="trangTi"></div>
         <div className="latMat"></div>
       </Slider>
-      <HomeTool />
+      {/* <HomeTool /> */}
     </div>
   );
 }

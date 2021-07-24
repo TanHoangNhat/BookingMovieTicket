@@ -2,8 +2,8 @@ import React from "react";
 import { useRef } from "react";
 
 import Footer from "../componnet/footer";
-import Header from "../componnet/header/header";
-import Carousel from "../componnet/pageHome/carousel";
+import Header from "../componnet/header/header.component";
+import Carousel from "../componnet/carousel/carousel.component";
 import TableBlock from "../componnet/pageHome/cinemeBlock";
 import HomeApp from "../componnet/pageHome/homeApp";
 import HomeMovie from "../componnet/pageHome/homeMovie";
@@ -26,8 +26,8 @@ function Home() {
   return (
     <div>
       <Header handleClick={handleClick} />
-      {/* <Carousel />
-      <div ref={refs.LC}>
+      <Carousel />
+      {/* <div ref={refs.LC}>
         <HomeMovie />
       </div>
       <div ref={refs.CR}>

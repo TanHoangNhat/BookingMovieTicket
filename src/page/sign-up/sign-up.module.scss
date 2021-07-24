@@ -7,16 +7,16 @@
     .form__content {
       display: flex;
       flex-wrap: wrap;
-      padding: 0.4rem;
+      padding: 0.64rem;
       .formField {
-        width: calc(50% - 0.8rem);
-        margin: 0.4rem !important;
+        width: calc(50% - 1.28rem);
+        margin: 0.64rem !important;
         @include for-size(sm, down) {
           width: 100%;
         }
       }
       .w50 {
-        width: calc(50% - 0.8rem);
+        width: calc(50% - 1.28rem);
       }
       .w100 {
         width: 100%;

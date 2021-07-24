@@ -13,6 +13,7 @@
   height: 100vh;
   background: url("../../asset/image/bg2.jpg") center;
   background-size: contain;
+  font-size: 1.6rem;
   .signIn__container {
     .signIn__content {
       @include position_value(absolute, 50%, unset, 50%, unset);
@@ -23,7 +24,7 @@
       transform: translate(-50%, -50%);
       @include for-size(md, down) {
         width: 80%;
-        padding: 1.5rem;
+        padding: 2.4rem;
       }
       .esc__button {
         @include position_value(absolute, -16px, unset, unset, -16px);
@@ -49,7 +50,7 @@
         }
       }
       .content__header {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2.4rem;
         .content__image {
           display: block;
           width: 70%;
@@ -63,10 +64,10 @@
       .content__body {
         .formField {
           position: relative;
-          margin: 0.8rem 0;
+          margin: 1.28rem 0;
           overflow: hidden;
           .formInput {
-            padding: 1rem;
+            padding: 1.6rem;
             width: 100%;
             border: 2px solid #cacaca;
             border-radius: 8px;
@@ -82,15 +83,14 @@
               border-left: 2px solid rgb(244, 67, 54);
             }
             @include for-size(sm, down) {
-              padding: 0.5rem;
+              padding: 0.8rem;
             }
           }
           .formLabel {
             @include position_value(absolute, 2px, unset, unset, 2px);
             width: calc(100% - 4px);
-            padding: 1rem;
+            padding: 1.6rem;
             border-radius: 8px;
-            font-weight: 600;
             background-color: #081630;
             color: #cacaca;
             transition: 0.3s ease;
@@ -98,7 +98,7 @@
             pointer-events: none;
             text-align: center;
             @include for-size(sm, down) {
-              padding: 0.5rem;
+              padding: 0.8rem;
             }
           }
 
@@ -108,9 +108,8 @@
 
           .errorText {
             @include position_value(absolute, 0, unset, 0, unset);
-            padding: 0 1rem;
+            padding: 0 1.6rem;
             font-style: italic;
-            font-weight: 600;
             font-size: 12px;
             color: rgb(244, 67, 54);
             z-index: 10;
@@ -120,10 +119,9 @@
 
           .formButton {
             width: 100%;
-            padding: 1rem;
+            padding: 1.6rem;
             border: 2px solid #cacaca;
             border-radius: 8px;
-            font-weight: 600;
             color: #081630;
             background-image: linear-gradient(to left, #fa5238, #ff8664);
             opacity: 0.8;
@@ -135,12 +133,13 @@
               opacity: 1;
             }
             @include for-size(sm, down) {
-              padding: 0.5rem;
+              padding: 0.8rem;
             }
           }
         }
         .signUp__link {
           font-style: italic;
+          font-size: 1.4rem;
           text-decoration: none;
         }
       }
