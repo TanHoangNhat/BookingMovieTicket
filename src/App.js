@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./page/home";
 import Dashboard from "./admin/page/dashboard/dashboard.page";
 import { Detail } from "./page/detail";
-import Footer from "./componnet/footer";
+import Footer from "./components/footer";
 import Booking from "./page/booking";
 import Chairing from "./page/chairing";
 import SignIn from "./page/sign-in/sign-in.page";

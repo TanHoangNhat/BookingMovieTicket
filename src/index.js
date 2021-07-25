@@ -10,10 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/jquery/dist/jquery.slim.js";
-import "../node_modules/popper.js/dist/popper";
-import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
-
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 axios.interceptors.request.use((r) => {
   const TOKEN = JSON.parse(localStorage.getItem("accessToken"));
   if (TOKEN) r.headers["Authorization"] = `Bearer ${TOKEN}`;

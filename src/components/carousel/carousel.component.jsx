@@ -8,6 +8,7 @@ import img1 from "../../asset/image/trangTi.png";
 import img2 from "../../asset/image/latMat.png";
 import img3 from "../../asset/image/banTayDietQuy.png";
 import style from "./carousel.module.scss";
+import HomeTool from "../homeTool/homeTool.component";
 
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
@@ -50,6 +51,7 @@ const Carousel = () => {
           </SwiperSlide>
         </Swiper>
       </div>
+      <HomeTool />
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import React from "react";
 import { useRef } from "react";
 
-import Footer from "../componnet/footer";
-import Header from "../componnet/header/header.component";
-import Carousel from "../componnet/carousel/carousel.component";
-import TableBlock from "../componnet/pageHome/cinemeBlock";
-import HomeApp from "../componnet/pageHome/homeApp";
-import HomeMovie from "../componnet/pageHome/homeMovie";
-import NewBlock from "../componnet/pageHome/newBlock";
+import Footer from "../components/footer";
+import Header from "../components/header/header.component";
+import Carousel from "../components/carousel/carousel.component";
+import TableBlock from "../components/pageHome/cinemeBlock";
+import HomeApp from "../components/pageHome/homeApp";
+import HomeMovie from "../components/pageHome/homeMovie";
+import NewBlock from "../components/pageHome/newBlock";
 
 function Home() {
   const refs = {
@@ -27,6 +27,36 @@ function Home() {
     <div>
       <Header handleClick={handleClick} />
       <Carousel />
+      <h1>gggggggggggggggggggggggggg</h1>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       {/* <div ref={refs.LC}>
         <HomeMovie />
       </div>
