@@ -1,3 +1,5 @@
+@import "../../asset/basicSCSS/responsive.scss";
+
 .home__tool {
   position: absolute;
   bottom: 0;
@@ -11,6 +13,9 @@
   background-color: #fff;
   z-index: 10;
   display: flex;
+  @include for-size(992px, down) {
+    display: none;
+  }
   .tool__movie,
   .tool__cinema,
   .tool__date,

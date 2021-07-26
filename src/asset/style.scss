@@ -3,6 +3,15 @@
   src: url(../asset/fonts/SF-UI-Display-Regular.otf);
 }
 
+@font-face {
+  font-family: "SF Medium";
+  src: url(../asset/fonts/SF-UI-Display-Medium.otf);
+}
+
+@font-face {
+  font-family: "SF Text Regular";
+  src: url(../asset/fonts/SF-UI-Text-Regular.otf);
+}
 * {
   box-sizing: border-box;
   padding: 0;
