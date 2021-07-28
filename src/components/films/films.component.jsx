@@ -39,11 +39,11 @@ const Films = ({ r }) => {
     slidesPerView: 4,
     centeredSlides: true,
     slideToClickedSlide: true,
-    autoplay: {
-      delay: 3000,
-      pauseOnMouseEnter: true,
-      disableOnInteraction: false
-    },
+    // autoplay: {
+    //   delay: 3000,
+    //   pauseOnMouseEnter: true,
+    //   disableOnInteraction: false
+    // },
     coverflowEffect: {
       rotate: 30,
       stretch: 0,
@@ -67,6 +67,11 @@ const Films = ({ r }) => {
     }
   };
 
+  const renderImageUrl = (url) => {
+    if (!url.includes("https")) return url.replace("http", "https");
+    return url;
+  };
+
   const renderMovies = (movieList) => {
     return movieList?.map((movie) => {
       return (
@@ -76,7 +81,7 @@ const Films = ({ r }) => {
               <div
                 className={style.film__image}
                 style={{
-                  backgroundImage: `url('${movie.hinhAnh}')`
+                  backgroundImage: `url('${renderImageUrl(movie.hinhAnh)}')`
                 }}
               >
                 <span className={style.point}>
