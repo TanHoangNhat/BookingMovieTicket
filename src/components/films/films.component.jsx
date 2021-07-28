@@ -40,6 +40,7 @@ const Films = ({ r }) => {
     centeredSlides: true,
     slideToClickedSlide: true,
     autoplay: {
+      delay: 3000,
       pauseOnMouseEnter: true,
       disableOnInteraction: false
     },
@@ -49,6 +50,20 @@ const Films = ({ r }) => {
       depth: 250,
       modifier: 0.6,
       slideShadows: false
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1
+      },
+      320: {
+        slidesPerView: 2
+      },
+      480: {
+        slidesPerView: 3
+      },
+      640: {
+        slidesPerView: 4
+      }
     }
   };
 
@@ -63,14 +78,32 @@ const Films = ({ r }) => {
                 style={{
                   backgroundImage: `url('${movie.hinhAnh}')`
                 }}
-              ></div>
+              >
+                <span className={style.point}>
+                  <span>{movie.danhGia}</span>
+                  <div>
+                    <span className={style.star}></span>
+                    <span className={style.star}></span>
+                    <span className={style.star}></span>
+                    <span className={style.star}></span>
+                    <span className={style.half}></span>
+                  </div>
+                </span>
+                <div className={style.overlay}>
+                  <button className={style.play}></button>
+                </div>
+              </div>
             </a>
             <div className={style.film__info}>
               <div className={style.title}>
                 <span className={style.rated}>P</span>
                 {movie.tenPhim}
               </div>
-              <div className={style.length}>100 Phút</div>
+              <div className={style.length}>
+                100 Phút - IMDb - [
+                {Math.round((Math.random() * 5 + 5) * 10) / 10}]
+              </div>
+              <a className={style.book}>Mua vé</a>
             </div>
           </div>
         </SwiperSlide>
@@ -103,13 +136,13 @@ const Films = ({ r }) => {
           </button>
         </div>
         <div className={`tab-content ${style.films__body}`}>
-          <div id="nowShowing" className="tab-pane fade active show">
+          <div id="nowShowing" className="tab-pane fade active show nowShowing">
             <Swiper {...swiperSettings}>{renderMovies(nowShowingList)}</Swiper>
           </div>
-          <div id="upComing" className="tab-pane fade active">
+          <div id="upComing" className="tab-pane fade active upComing">
             <Swiper {...swiperSettings}>{renderMovies(upComingList)}</Swiper>
           </div>
-          <div></div>
+          <div className={style.content}></div>
         </div>
       </div>
     </div>

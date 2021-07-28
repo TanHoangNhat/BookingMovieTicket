@@ -3,7 +3,7 @@
 .carousel__section {
   margin-top: 60px;
   position: relative;
-  @include for-size(md, down) {
+  @include for-size(480px, down) {
     display: none;
   }
   .carousel__wrapper {
