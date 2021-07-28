@@ -112,32 +112,49 @@
 
   .film__image {
     cursor: pointer;
-    .overlay {
-      opacity: 0;
-      transition: 0.2s all;
+    overflow: hidden;
+    &::after {
+      content: "";
+      transform: skewX(30deg) translateX(-125%);
+      transition: 0.4s all;
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
-      right: 0;
+      width: 200%;
       border-radius: 4px;
-      background: linear-gradient(to top, #000, transparent);
-      .play {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: url("../../asset/image/play-video.png") center no-repeat;
-        background-size: contain;
-        width: 60px;
-        height: 60px;
-        border: none;
-        &:hover {
-          opacity: 0.7;
-        }
+      background: linear-gradient(60deg, #fa5238cc, transparent, #ffffff66);
+    }
+    &:hover::after {
+      transform: skewX(30deg) translateX(-25%);
+    }
+    .overlay {
+      transform: scale(0.7);
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: 0.4s all;
+      z-index: 10;
+    }
+    .play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: url("../../asset/image/play-video.png") center no-repeat;
+      background-size: contain;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      border: none;
+      transition: 0.4s all;
+      &:hover {
+        transform: translate(-50%, -50%) scale(0.9);
       }
     }
     &:hover .overlay {
+      transform: scale(1);
       opacity: 1;
     }
   }

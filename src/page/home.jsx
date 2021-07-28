@@ -29,9 +29,7 @@ function Home() {
       <Header handleClick={handleClick} />
       <Carousel />
       <Films r={refs.LC} />
-      <div ref={refs.CR}>
-        <TableBlock />
-      </div>
+      <div ref={refs.CR}>{/* <TableBlock /> */}</div>
       {/* <div ref={refs.TT}>
           <NewBlock />
         </div>

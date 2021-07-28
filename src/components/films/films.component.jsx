@@ -36,7 +36,6 @@ const Films = ({ r }) => {
     effect: "coverflow",
     className: style.films__container,
     grabCursor: true,
-    slidesPerView: 4,
     centeredSlides: true,
     slideToClickedSlide: true,
     // autoplay: {
@@ -56,12 +55,15 @@ const Films = ({ r }) => {
         slidesPerView: 1
       },
       320: {
+        slidesPerView: 1
+      },
+      425: {
         slidesPerView: 2
       },
-      480: {
+      768: {
         slidesPerView: 3
       },
-      640: {
+      1024: {
         slidesPerView: 4
       }
     }
@@ -95,7 +97,7 @@ const Films = ({ r }) => {
                   </div>
                 </span>
                 <div className={style.overlay}>
-                  <button className={style.play}></button>
+                  <a className={style.play}></a>
                 </div>
               </div>
             </a>
