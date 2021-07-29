@@ -1,0 +1,188 @@
+.cinemaBlock {
+  margin-bottom: 10rem;
+}
+.cinemaBlock .wrapper {
+  width: 65%;
+  margin: 0 auto;
+}
+.cinemaBlock .bg_cinemaBlock img {
+  width: 100%;
+  height: 10rem;
+}
+.cinemaBlock :global(.col-md-1) {
+  border: 1px solid #e2e2e2;
+  padding: 0;
+  border-right: none;
+}
+.cinemaBlock :global(.col-md-4) {
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.cinemaBlock :global(.nav-item) a {
+  padding: 2rem 1.5rem 0;
+}
+.cinemaBlock :global(.nav-item) a img {
+  pointer-events: none;
+  width: 58px;
+  max-width: 100%;
+  height: auto;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e2e2e2;
+  opacity: 0.35;
+}
+.cinemaBlock :global(.nav-item a.active img) {
+  opacity: 1;
+}
+.cinemaBlock :global(.nav-item a img:hover) {
+  opacity: 1;
+}
+
+.cinemaBlock :global(.col-md-11) {
+  border: 1px solid#e2e2e2;
+}
+.cinemaBlock :global(.col-md-4) {
+  padding: 0;
+  border-right: 1px solid #e2e2e2;
+}
+.cinemaBlock :global(.nav-item) {
+  width: 100%;
+}
+.cinemaBlock :global(.nav-link) {
+  padding: 2rem 1.5rem 0;
+  background-color: white !important;
+  cursor: pointer;
+}
+.cinemaBlock :global(.nav-link.active) .details {
+  opacity: 1;
+}
+.cinemaBlock :global(.nav-link) .details {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  opacity: 0.35;
+}
+
+.cinemaBlock :global(.nav-link) .details:hover {
+  opacity: 1;
+}
+.cinemaBlock :global(.nav-link) .details .cinemaImage .image {
+  width: 54px;
+  margin-right: 20px;
+}
+
+.cinemaBlock :global(.nav-link) .details .describe {
+  display: block;
+  font-size: 14px;
+  overflow: hidden;
+}
+.cinemaBlock :global(.nav-link) .details .describe p {
+  margin-bottom: 0;
+  color: black;
+}
+.cinemaBlock :global(.nav-link) .details .describe .address {
+  color: #949494;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.cinemaBlock :global(.nav-link) .details .describe .green {
+  color: #8bc541;
+}
+.cinemaBlock :global(.nav-link) .details .describe .pink {
+  color: #df0d7a;
+}
+.cinemaBlock :global(.nav-link) .details .describe .grey {
+  color: #9c9c9c;
+}
+.cinemaBlock :global(.nav-link) .details .describe .yellow {
+  color: #e5a813;
+}
+.cinemaBlock :global(.nav-link) .details .describe .orange {
+  color: #ca4137;
+}
+.cinemaBlock :global(.nav-link) .details .describe .moreInfo {
+  color: red;
+}
+/* col-md-8  */
+.cinemaBlock :global(.col-md-8) {
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.cinemaBlock .big__details {
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.cinemaBlock .big__details .cinemaImage img {
+  width: 60px;
+  margin-right: 15px;
+}
+.cinemaBlock .big__details .titleInfo {
+  width: 100%;
+  padding-top: 5px;
+}
+.cinemaBlock .big__details .titleInfo .bg__green {
+  background-color: green;
+}
+.cinemaBlock .big__details .titleInfo .bg-red {
+  background-color: red;
+}
+
+.cinemaBlock .big__details .titleInfo span {
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-right: 5px;
+  font-size: 12px;
+  min-width: 33px;
+  float: left;
+  text-align: center;
+}
+
+.cinemaBlock .big__details .titleInfo .movieTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0;
+  line-height: 22px;
+}
+.cinemaBlock .big__details .titleInfo .info {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #9b9b9b;
+}
+.cinemaBlock .big__details .typeTiming {
+  padding-top: 8px;
+}
+.cinemaBlock .big__details .typeTiming .version {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.cinemaBlock .big__details .typeTiming .session {
+  display: flex;
+  flex-flow: row wrap;
+}
+.cinemaBlock .big__details .typeTiming .session a {
+  width: calc(22% - 1px);
+  text-decoration: none;
+  color: #9b9b9b;
+  padding: 10px 0;
+  background-color: #fbfbfb;
+  margin: 0 10px 10px 0;
+  border-radius: 7px;
+  display: block;
+  font-size: 17px;
+  border: 1px solid #9b9b9b;
+  text-align: center;
+}
+.cinemaBlock .big__details .typeTiming .session .start-time {
+  color: #108f3e;
+  transition: all 0.3s;
+}
+.cinemaBlock .big__details .typeTiming .session a:hover .start-time {
+  color: red;
+}

@@ -14,6 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Redirect exact from="/" to="/home" />
         <Route path="/home" component={Home} />
         <Route path="/detail/:maPhim">
           <Detail />

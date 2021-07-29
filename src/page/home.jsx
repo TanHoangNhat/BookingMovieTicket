@@ -9,6 +9,7 @@ import HomeApp from "../components/pageHome/homeApp";
 import HomeMovie from "../components/pageHome/homeMovie";
 import NewBlock from "../components/pageHome/newBlock";
 import Films from "../components/films/films.component";
+import Cinema from "../components/cinema/cinema.component";
 
 function Home() {
   const refs = {
@@ -29,7 +30,26 @@ function Home() {
       <Header handleClick={handleClick} />
       <Carousel />
       <Films r={refs.LC} />
-      <div ref={refs.CR}>{/* <TableBlock /> */}</div>
+      <Cinema r={refs.CR} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <TableBlock />
       {/* <div ref={refs.TT}>
           <NewBlock />
         </div>

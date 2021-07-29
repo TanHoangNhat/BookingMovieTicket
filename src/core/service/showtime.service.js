@@ -10,6 +10,11 @@ class ShowtimeService {
       data
     });
   };
+  getShowtimeByCinemaSystem = (maHeThongRap, maNhom) =>
+    axios({
+      url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${maNhom}`,
+      method: "GET"
+    });
 }
 
 export const showtimeService = new ShowtimeService();
