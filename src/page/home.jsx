@@ -49,7 +49,6 @@ function Home() {
       <br />
       <br />
       <br />
-      <TableBlock />
       {/* <div ref={refs.TT}>
           <NewBlock />
         </div>
