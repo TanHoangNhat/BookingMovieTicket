@@ -10,7 +10,7 @@ import {
 } from "../../store/action/showtime.action";
 import style from "./cinema.module.scss";
 
-const Cinema = () => {
+const Cinema = ({r}) => {
   const dispatch = useDispatch();
   const cinemaSystemList = useSelector(
     (state) => state.cinema.cinemaSystemList
@@ -118,7 +118,7 @@ const Cinema = () => {
   }, []);
 
   return (
-    <section className={style.cinemaBlock}>
+    <section ref={r} className={style.cinemaBlock}>
       <div className={style.wrapper}>
         <div className="row">
           <div className="col-md-1 ">
