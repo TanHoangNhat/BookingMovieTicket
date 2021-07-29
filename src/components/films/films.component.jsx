@@ -38,11 +38,11 @@ const Films = ({ r }) => {
     grabCursor: true,
     centeredSlides: true,
     slideToClickedSlide: true,
-    // autoplay: {
-    //   delay: 3000,
-    //   pauseOnMouseEnter: true,
-    //   disableOnInteraction: false
-    // },
+    autoplay: {
+      delay: 3000,
+      pauseOnMouseEnter: true,
+      disableOnInteraction: false
+    },
     coverflowEffect: {
       rotate: 30,
       stretch: 0,
