@@ -1,3 +1,5 @@
+@import "../../asset/basicSCSS/responsive.scss";
+
 .films__section {
   padding-top: 60px;
   height: 100%;
@@ -11,11 +13,12 @@
     .films__body {
       position: relative;
       padding-top: 40%;
-      // .content {
-      //   position: absolute;
-      //   top: 0;
-      //   padding-top: 40%;
-      // }
+      @include for-size(767px, down) {
+        padding-top: 65%;
+      }
+      @include for-size(375px, down) {
+        padding-top: 140%;
+      }
       :global(.nowShowing),
       :global(.upComing) {
         position: absolute;

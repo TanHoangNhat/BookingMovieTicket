@@ -34,7 +34,7 @@ export const getShowtimeByCinemaSystemAction = (maHeThongRap) => {
         type: GET_SHOWTIME_LIST_BY_SYSTEM,
         payload: response.data[0]
       });
-      console.log(response.data[0]);
+      // console.log(response.data[0]);
     } catch (error) {
       console.log(error.response);
     }
