@@ -16,6 +16,9 @@
       @include for-size(767px, down) {
         padding-top: 65%;
       }
+      @include for-size(425px, down) {
+        padding-top: 140%;
+      }
       @include for-size(375px, down) {
         padding-top: 140%;
       }

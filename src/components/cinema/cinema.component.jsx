@@ -168,7 +168,7 @@ const Cinema = ({ r }) => {
   return (
     <section ref={r} className={style.cinemaBlock}>
       <div className={style.wrapper}>
-        <div className="row">
+        <div className="row m-0">
           <div className={`col-md-1 col-sm-12 ${style.cinema__system}`}>
             <ul className="nav nav-pills">{renderCinemaSystem()}</ul>
           </div>
