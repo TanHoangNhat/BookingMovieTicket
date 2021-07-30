@@ -50,7 +50,7 @@ const Cinema = ({ r }) => {
             }
           >
             <div className="d-flex align-items-center">
-              <img src={system.logo} />
+              <img src={renderImageUrl(system.logo)} />
             </div>
           </a>
         </li>
@@ -73,7 +73,11 @@ const Cinema = ({ r }) => {
         >
           <div className={style.details}>
             <div className={style.cinema__image}>
-              <img src={currentLogo} className={style.image} alt="bhd" />
+              <img
+                src={renderImageUrl(currentLogo)}
+                className={style.image}
+                alt="bhd"
+              />
             </div>
             <div className={style.describe}>
               <p className={style.name}>{group.tenCumRap}</p>
@@ -101,7 +105,7 @@ const Cinema = ({ r }) => {
         <div className={`${style.movie__details}`}>
           <div className={`${style.movie__info} d-flex`}>
             <div className={style.image}>
-              <img src={movie.hinhAnh} alt="wonderwoman" />
+              <img src={renderImageUrl(movie.hinhAnh)} alt="wonderwoman" />
             </div>
             <div className={style.info}>
               <span className={style.rated}>P</span>
@@ -143,6 +147,10 @@ const Cinema = ({ r }) => {
       });
   };
 
+  const renderImageUrl = (url) => {
+    if (!url.includes("https")) return url.replace("http", "https");
+    return url;
+  };
   useEffect(() => {
     dispatch(getCinemaSystemListAction());
   }, []);
