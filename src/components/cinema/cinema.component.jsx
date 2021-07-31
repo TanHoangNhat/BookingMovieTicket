@@ -18,9 +18,9 @@ const Cinema = ({ r }) => {
     (state) => state.cinema.cinemaSystemList
   );
   const cinemaGroupList = useSelector((state) => state.cinema.cinemaGroupList);
-  const movieListSystem = useSelector(
-    (state) => state.showtime.showtimeListBySystem
-  );
+  // const movieListSystem = useSelector(
+  //   (state) => state.showtime.showtimeListBySystem
+  // );
   const movieList = useSelector(
     (state) => state.showtime.showtimeListByGroup.danhSachPhim
   );
@@ -41,31 +41,34 @@ const Cinema = ({ r }) => {
   const renderCinemaSystem = () => {
     return cinemaSystemList.map((system, index) => {
       return (
-        <li className="nav-item">
-          <a
-            className={clsx({ ["nav-link"]: true, ["active"]: index === 0 })}
+        <li key={index} className="nav-item">
+          <button
+            className={clsx({ "nav-link": true, active: index === 0 })}
             data-bs-toggle="pill"
             onClick={(event) =>
               handleChangeCinemaSystem(event, system.maHeThongRap)
             }
           >
             <div className="d-flex align-items-center">
-              <img src={renderImageUrl(system.logo)} />
+              <img
+                src={renderImageUrl(system.logo)}
+                alt={system.maHeThongRap}
+              />
             </div>
-          </a>
+          </button>
         </li>
       );
     });
   };
 
   const renderCinemaGroup = () => {
-    console.log("re-render");
     return cinemaGroupList.map((group, index) => {
       return (
         <a
+          key={index}
           className={clsx({
-            ["nav-link"]: true,
-            ["active"]: index === 0
+            "nav-link": true,
+            active: index === 0
           })}
           data-bs-toggle="pill"
           role="tab"
@@ -76,7 +79,7 @@ const Cinema = ({ r }) => {
               <img
                 src={renderImageUrl(currentLogo)}
                 className={style.image}
-                alt="bhd"
+                alt={group.maCumRap}
               />
             </div>
             <div className={style.describe}>
@@ -105,7 +108,7 @@ const Cinema = ({ r }) => {
         <div className={`${style.movie__details}`}>
           <div className={`${style.movie__info} d-flex`}>
             <div className={style.image}>
-              <img src={renderImageUrl(movie.hinhAnh)} alt="wonderwoman" />
+              <img src={renderImageUrl(movie.hinhAnh)} alt={movie.biDanh} />
             </div>
             <div className={style.info}>
               <span className={style.rated}>P</span>
@@ -166,7 +169,7 @@ const Cinema = ({ r }) => {
   // }, [movieListSystem]);
 
   return (
-    <section ref={r} className={style.cinemaBlock}>
+    <section ref={r} className={style.cinema__section}>
       <div className={style.wrapper}>
         <div className="row m-0">
           <div className={`col-md-1 col-sm-12 ${style.cinema__system}`}>

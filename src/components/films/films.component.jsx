@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import style from "./films.module.scss";
-import { useSpring, animated } from "react-spring";
 
 import "swiper/swiper.min.css";
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
@@ -75,9 +74,9 @@ const Films = ({ r }) => {
   };
 
   const renderMovies = (movieList) => {
-    return movieList?.map((movie) => {
+    return movieList?.map((movie, index) => {
       return (
-        <SwiperSlide className={style.films__slide}>
+        <SwiperSlide key={index} className={style.films__slide}>
           <div className={style.film__item}>
             <a>
               <div
@@ -97,7 +96,7 @@ const Films = ({ r }) => {
                   </div>
                 </span>
                 <div className={style.overlay}>
-                  <a className={style.play}></a>
+                  <button className={style.play}></button>
                 </div>
               </div>
             </a>
@@ -122,7 +121,7 @@ const Films = ({ r }) => {
     dispatch(getListMovie());
   }, []);
   return (
-    <div ref={r} className={style.films__section}>
+    <section ref={r} className={style.films__section}>
       <div className={style.films__content}>
         <div className={`nav nav-tabs ${style.films__header}`}>
           <button
@@ -152,7 +151,7 @@ const Films = ({ r }) => {
           <div className={style.content}></div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

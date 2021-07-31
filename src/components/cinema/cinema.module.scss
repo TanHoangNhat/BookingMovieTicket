@@ -1,6 +1,6 @@
 @import "../../asset/basicSCSS/responsive.scss";
 
-.cinemaBlock {
+.cinema__section {
   padding-top: 10rem;
   .wrapper {
     max-width: 940px;
@@ -35,7 +35,7 @@
   }
 
   li {
-    a {
+    button {
       padding: 2rem 1.5rem 0;
       height: 84px;
       background-color: white !important;

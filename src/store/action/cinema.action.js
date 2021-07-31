@@ -14,7 +14,6 @@ export const getListRap = () => {
   let url = "api/QuanLyRap/LayThongTinHeThongRap";
   let method = "GET";
   return async (dispatch) => {
-    console.log("list rap");
     try {
       const { data, status } = await api.get(url, method);
       if (STATUS_CODE.SUCCESS === status) {

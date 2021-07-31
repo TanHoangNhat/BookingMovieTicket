@@ -10,6 +10,7 @@ import HomeMovie from "../components/pageHome/homeMovie";
 import NewBlock from "../components/pageHome/newBlock";
 import Films from "../components/films/films.component";
 import Cinema from "../components/cinema/cinema.component";
+import News from "../components/news/news.component";
 
 function Home() {
   const refs = {
@@ -26,11 +27,48 @@ function Home() {
     params.current.scrollIntoView();
   };
   return (
-    <div>
+    <>
       <Header handleClick={handleClick} />
       <Carousel />
       <Films r={refs.LC} />
       <Cinema r={refs.CR} />
+      <News r={refs.TT} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <br />
       <br />
       <br />
@@ -56,7 +94,7 @@ function Home() {
           <HomeApp />
         </div>
         <Footer /> */}
-    </div>
+    </>
   );
 }
 

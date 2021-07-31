@@ -14,7 +14,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const Carousel = () => {
   return (
-    <div className={style.carousel__section}>
+    <section className={style.carousel__section}>
       <div className={style.carousel__wrapper}>
         <Swiper
           className={style.carousel__swiper}
@@ -51,7 +51,7 @@ const Carousel = () => {
         </Swiper>
       </div>
       <HomeTool />
-    </div>
+    </section>
   );
 };
 
