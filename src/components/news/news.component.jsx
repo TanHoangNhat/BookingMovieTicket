@@ -65,7 +65,7 @@ const News = ({ r }) => {
         );
     });
     const smallNews = array.map((d, index) => {
-      if (index > 3)
+      if (index > 3 && index < 8)
         return (
           <div
             key={index}
