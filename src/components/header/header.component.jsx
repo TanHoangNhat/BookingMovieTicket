@@ -44,7 +44,7 @@ function Header({ handleClick }) {
     );
   };
   return (
-    <section className={style.header}>
+    <header className={style.header}>
       <div className={style.header__navbar}>
         <div className={style.navbar__left}>
           <a className="" href="#">
@@ -134,7 +134,7 @@ function Header({ handleClick }) {
           <img src={burger} alt="" />
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 
