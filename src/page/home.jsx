@@ -4,13 +4,11 @@ import { useRef } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header/header.component";
 import Carousel from "../components/carousel/carousel.component";
-import TableBlock from "../components/pageHome/cinemeBlock";
-import HomeApp from "../components/pageHome/homeApp";
-import HomeMovie from "../components/pageHome/homeMovie";
-import NewBlock from "../components/pageHome/newBlock";
+// import HomeApp from "../components/pageHome/homeApp";
 import Films from "../components/films/films.component";
 import Cinema from "../components/cinema/cinema.component";
 import News from "../components/news/news.component";
+import Application from "../components/application/application.component";
 
 function Home() {
   const refs = {
@@ -33,6 +31,7 @@ function Home() {
       <Films r={refs.LC} />
       <Cinema r={refs.CR} />
       <News r={refs.TT} />
+      <Application r={refs.UD} />
       <br />
       <br />
       <br />
@@ -87,10 +86,7 @@ function Home() {
       <br />
       <br />
       <br />
-      {/* <div ref={refs.TT}>
-          <NewBlock />
-        </div>
-        <div ref={refs.UD}>
+      {/* <div ref={refs.UD}>
           <HomeApp />
         </div>
         <Footer /> */}

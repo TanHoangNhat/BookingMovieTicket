@@ -6,8 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { Store } from "./store/config/config";
 import { Provider } from "react-redux";
 import "./css/style.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
