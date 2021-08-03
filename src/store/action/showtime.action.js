@@ -1,6 +1,7 @@
 import { showtimeService } from "../../core/service/showtime.service";
 import {
   GET_SHOWTIME_LIST_BY_GROUP,
+  GET_SHOWTIME_LIST_BY_MOVIE,
   GET_SHOWTIME_LIST_BY_SYSTEM,
   SET_SHOWTIME_DETAIL
 } from "../constant/showtime.constant";
@@ -34,7 +35,6 @@ export const getShowtimeByCinemaSystemAction = (maHeThongRap) => {
         type: GET_SHOWTIME_LIST_BY_SYSTEM,
         payload: response.data[0]
       });
-      // console.log(response.data[0]);
     } catch (error) {
       console.log(error.response);
     }
@@ -45,5 +45,19 @@ export const getShowtimeByCinemaGroupAction = (payload) => {
   return {
     type: GET_SHOWTIME_LIST_BY_GROUP,
     payload
+  };
+};
+
+export const getShowtimeByMovieAction = (maPhim) => {
+  return async (dispatch) => {
+    try {
+      const response = await showtimeService.getShowtimeByMovie(maPhim);
+      dispatch({
+        type: GET_SHOWTIME_LIST_BY_MOVIE,
+        payload: response.data
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 };

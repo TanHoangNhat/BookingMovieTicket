@@ -15,12 +15,15 @@ import SwiperCore, {
 } from "swiper/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getListMovie } from "../../store/action/movie.action";
+import { useHistory } from "react-router-dom";
+import { renderImageUrl } from "../../core/helper/renderImageURL";
 
 // install Swiper modules
 SwiperCore.use([EffectCoverflow, Navigation, Controller, Autoplay]);
 
-const Films = ({ r }) => {
+const Films = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const list_movie = useSelector((state) => {
     return state.movie.list_movie;
@@ -68,17 +71,22 @@ const Films = ({ r }) => {
     }
   };
 
-  const renderImageUrl = (url) => {
-    if (!url.includes("https")) return url.replace("http", "https");
-    return url;
-  };
+  // const renderImageUrl = (url) => {
+  //   if (!url.includes("https")) return url.replace("http", "https");
+  //   return url;
+  // };
 
   const renderMovies = (movieList) => {
     return movieList?.map((movie, index) => {
       return (
         <SwiperSlide key={index} className={style.films__slide}>
           <div className={style.film__item}>
-            <a>
+            <a
+              target="_blank"
+              onClick={() => {
+                history.push(`/detail/${movie.maPhim}`);
+              }}
+            >
               <div
                 className={style.film__image}
                 style={{
@@ -121,7 +129,7 @@ const Films = ({ r }) => {
     dispatch(getListMovie());
   }, []);
   return (
-    <section ref={r} className={style.films__section}>
+    <section id="filmsBlock" className={style.films__section}>
       <div className={style.films__content}>
         <div className={`nav nav-tabs ${style.films__header}`}>
           <button

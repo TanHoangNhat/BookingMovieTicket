@@ -94,7 +94,7 @@ const News = ({ r }) => {
     );
   };
   return (
-    <section ref={r} id="news" className={style.new__section}>
+    <section id="newsBlock" className={style.new__section}>
       <div className={style.wrapper}>
         <div className={style.news__content}>
           <div className={`${style.news__header} nav nav-pills`}>

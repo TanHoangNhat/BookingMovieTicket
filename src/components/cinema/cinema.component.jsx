@@ -11,8 +11,9 @@ import {
 import style from "./cinema.module.scss";
 import * as DayJS from "dayjs";
 import clsx from "clsx";
+import { renderImageUrl } from "../../core/helper/renderImageURL";
 
-const Cinema = ({ r }) => {
+const Cinema = () => {
   const dispatch = useDispatch();
   const cinemaSystemList = useSelector(
     (state) => state.cinema.cinemaSystemList
@@ -150,10 +151,10 @@ const Cinema = ({ r }) => {
       });
   };
 
-  const renderImageUrl = (url) => {
-    if (!url.includes("https")) return url.replace("http", "https");
-    return url;
-  };
+  // const renderImageUrl = (url) => {
+  //   if (!url.includes("https")) return url.replace("http", "https");
+  //   return url;
+  // };
   useEffect(() => {
     dispatch(getCinemaSystemListAction());
   }, []);
@@ -169,7 +170,7 @@ const Cinema = ({ r }) => {
   // }, [movieListSystem]);
 
   return (
-    <section ref={r} className={style.cinema__section}>
+    <section id="cinemaBlock" className={style.cinema__section}>
       <div className={style.wrapper}>
         <div className="row m-0">
           <div className={`col-md-1 col-sm-12 ${style.cinema__system}`}>

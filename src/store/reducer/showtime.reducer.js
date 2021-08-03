@@ -1,5 +1,6 @@
 import {
   GET_SHOWTIME_LIST_BY_GROUP,
+  GET_SHOWTIME_LIST_BY_MOVIE,
   GET_SHOWTIME_LIST_BY_SYSTEM,
   SET_SHOWTIME_DETAIL
 } from "../constant/showtime.constant";
@@ -7,7 +8,8 @@ import {
 const initialState = {
   showtimeDetail: {},
   showtimeListBySystem: {},
-  showtimeListByGroup: {}
+  showtimeListByGroup: {},
+  showtimeListByMovie: []
 };
 
 export const ShowtimeReducer = (state = initialState, { type, payload }) => {
@@ -22,6 +24,8 @@ export const ShowtimeReducer = (state = initialState, { type, payload }) => {
       );
       console.log(list);
       return { ...state, showtimeListByGroup: { ...list } };
+    case GET_SHOWTIME_LIST_BY_MOVIE:
+      return { ...state, showtimeListByMovie: payload };
     default:
       return state;
   }

@@ -2,12 +2,13 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import Home from "./page/home";
 import Dashboard from "./admin/page/dashboard/dashboard.page";
-import { Detail } from "./page/detail";
+// import { Detail } from "./page/detail";
 import Booking from "./page/booking";
 import Chairing from "./page/chairing";
 import SignIn from "./page/sign-in/sign-in.page";
 import SignUp from "./page/sign-up/sign-up.page";
 import Guard from "./HOC/guard.hoc";
+import Detail from "./page/detail/detail.page";
 
 function App() {
   return (

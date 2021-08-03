@@ -15,6 +15,11 @@ class ShowtimeService {
       url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${maNhom}`,
       method: "GET"
     });
+  getShowtimeByMovie = (maPhim) =>
+    axios({
+      url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
+      method: "GET"
+    });
 }
 
 export const showtimeService = new ShowtimeService();

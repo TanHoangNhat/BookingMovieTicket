@@ -40,9 +40,9 @@ const slideArray = [
   slide16
 ];
 
-const Application = ({ r }) => {
+const Application = () => {
   return (
-    <section ref={r} className={style.app__section}>
+    <section id="appBlock" className={style.app__section}>
       <div className={style.app__wrapper}>
         <div className={style.app__content}>
           <div className="row m-0">
