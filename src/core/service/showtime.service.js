@@ -20,6 +20,17 @@ class ShowtimeService {
       url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
       method: "GET"
     });
+  getShowtimeInfo = (maLichChieu) =>
+    axios({
+      url: `${DOMAIN}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
+      method: "GET"
+    });
+  bookingTicket = (data) =>
+    axios({
+      url: `${DOMAIN}/api/QuanLyDatVe/DatVe`,
+      method: "POST",
+      data
+    });
 }
 
 export const showtimeService = new ShowtimeService();

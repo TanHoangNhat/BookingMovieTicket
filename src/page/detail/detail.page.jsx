@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../components/header/header.component";
 import { getDetailMovie } from "../../store/action/movie.action";
 import s from "./detail.module.scss";
@@ -80,14 +80,14 @@ const Detail = () => {
   const renderShowtime = (showtimeList) => {
     return showtimeList.map((st) => {
       return (
-        <a href="#">
+        <Link to={`/booking/${st.maLichChieu}`}>
           <span className={s.date}>
             {dayjs(st.ngayChieuGioChieu).format("MMM D, YYYY")}
           </span>
           <span className={s.time}>
             {dayjs(st.ngayChieuGioChieu).format("HH:mm")}
           </span>
-        </a>
+        </Link>
       );
     });
   };

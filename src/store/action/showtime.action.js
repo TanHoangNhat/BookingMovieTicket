@@ -1,8 +1,10 @@
 import { showtimeService } from "../../core/service/showtime.service";
 import {
+  GET_SHOWTIME_INFO,
   GET_SHOWTIME_LIST_BY_GROUP,
   GET_SHOWTIME_LIST_BY_MOVIE,
   GET_SHOWTIME_LIST_BY_SYSTEM,
+  SET_SELECT_CHAIR,
   SET_SHOWTIME_DETAIL
 } from "../constant/showtime.constant";
 
@@ -56,6 +58,44 @@ export const getShowtimeByMovieAction = (maPhim) => {
         type: GET_SHOWTIME_LIST_BY_MOVIE,
         payload: response.data
       });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
+
+export const getShowtimeInfoAction = (maLichChieu) => {
+  return async (dispatch) => {
+    try {
+      const response = await showtimeService.getShowtimeInfo(maLichChieu);
+      dispatch({
+        type: GET_SHOWTIME_INFO,
+        payload: response.data
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
+
+export const setSelectChairAction = (maGhe) => {
+  return {
+    type: SET_SELECT_CHAIR,
+    payload: maGhe
+  };
+};
+
+export const bookingTicketAction = (maLichChieu, danhSachVe) => {
+  return async (dispatch) => {
+    try {
+      const taiKhoanNguoiDung = JSON.parse(localStorage.getItem("taiKhoan"));
+      const data = {
+        maLichChieu,
+        taiKhoanNguoiDung,
+        danhSachVe
+      };
+      const response = await showtimeService.bookingTicket(data);
+      dispatch(getShowtimeInfoAction(maLichChieu));
     } catch (error) {
       console.log(error.response);
     }
