@@ -64,10 +64,10 @@ const Detail = () => {
           onClick={() => handleChangeCinemaSystem(sys.maHeThongRap)}
         >
           <div className="d-flex align-items-center">
-            <div className={s.system__image}>
+            <div className={`${s.system__image}`}>
               <img src={renderImageUrl(sys.logo)} />
             </div>
-            <div className={s.system__name}>
+            <div className={`${s.system__name}`}>
               <p>{sys.tenHeThongRap}</p>
             </div>
           </div>
@@ -123,8 +123,10 @@ const Detail = () => {
   return (
     <>
       <Header />
+      <Loader />
       {isLoading ? (
-        <Loader />
+        // <Loader />""
+        ""
       ) : (
         <>
           <section className={s.detail__section}>
@@ -132,11 +134,11 @@ const Detail = () => {
               <div className={s.detail__content}>
                 <div className={s.content__main}>
                   <div className={s.info}>
-                    <div className={`${s.wrapper} row align-items-center`}>
-                      <div className={`col-sm-3 ${s.left}`}>
+                    <div className={`${s.wrapper} row`}>
+                      <div className={`col-sm-3 col-5 ${s.left}`}>
                         <img className={`w-100`} src={hinhAnh} alt="" />
                       </div>
-                      <div className={`${s.middle} text-white col-sm-5`}>
+                      <div className={`${s.middle} text-white col-sm-5 col-12`}>
                         <p>{dayjs(ngayKhoiChieu).format("DD.MM.YYYY")}</p>
                         <p>
                           <span className={s.rated}>C18</span>
@@ -144,7 +146,7 @@ const Detail = () => {
                         </p>
                         <p>100 phút - 0 IMDb - 2D/Digital</p>
                       </div>
-                      <div className={`${s.right} col-sm-2`}>
+                      <div className={`${s.right} col-sm-4 col-7`}>
                         <div className={s.circle__rating}>
                           <div className={s.circle__border}></div>
                           <div className={s.circle__fill}>
@@ -204,8 +206,8 @@ const Detail = () => {
                         </div>
                       </div>
                     </div>
-                    <div id="info" className="tab-pane fade ">
-                      bbbbbcccc
+                    <div id="info" className="text-white tab-pane fade ">
+                      N/A
                     </div>
                   </div>
                 </div>

@@ -65,7 +65,7 @@ export const getShowtimeByMovieAction = (maPhim) => {
     }
     setTimeout(() => {
       dispatch(stopLoadingAction());
-    }, 2000);
+    }, 1000);
   };
 };
 
@@ -81,7 +81,9 @@ export const getShowtimeInfoAction = (maLichChieu) => {
     } catch (error) {
       console.log(error.response);
     }
-    dispatch(stopLoadingAction());
+    setTimeout(() => {
+      dispatch(stopLoadingAction());
+    }, 1000);
   };
 };
 

@@ -1,5 +1,8 @@
+@import "../../asset/basicSCSS/responsive.scss";
+
 .booking__section {
   padding-top: 6rem;
+  animation: fade 2s ease;
   .booking__wrapper {
     margin: 0 auto;
     .booking__content {
@@ -244,5 +247,14 @@
     &:disabled {
       opacity: 0.8;
     }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

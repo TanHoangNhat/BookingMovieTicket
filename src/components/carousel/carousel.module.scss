@@ -3,6 +3,7 @@
 .carousel__section {
   margin-top: 60px;
   position: relative;
+  animation: fade 2s ease;
   @include for-size(480px, down) {
     display: none;
   }
@@ -64,5 +65,14 @@
     background: url("../../asset/image/next-session.png") center no-repeat;
     background-size: contain;
     right: 15px;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
