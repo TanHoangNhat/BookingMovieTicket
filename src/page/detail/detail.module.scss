@@ -54,8 +54,11 @@
   }
   .left {
     img {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-top: 160%;
       border-radius: 4px;
-      // height: 320px;
     }
   }
   .middle {

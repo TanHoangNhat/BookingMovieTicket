@@ -137,8 +137,10 @@ const Detail = () => {
                     <div className={`${s.wrapper} row`}>
                       <div className={`col-sm-3 col-5 ${s.left}`}>
                         <img
+                          style={{
+                            backgroundImage: `url('${renderImageUrl(hinhAnh)}')`
+                          }}
                           className={`w-100`}
-                          src={renderImageUrl(hinhAnh)}
                           alt=""
                         />
                       </div>
