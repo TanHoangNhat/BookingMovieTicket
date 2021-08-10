@@ -226,7 +226,7 @@
 }
 
 :global(.custom__swal) {
-  will-change: unset !important;
+  // will-change: unset !important;
   button {
     font-weight: unset;
     font-size: 18px;
