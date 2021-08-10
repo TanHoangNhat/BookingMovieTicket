@@ -71,7 +71,7 @@ export const getShowtimeByMovieAction = (maPhim) => {
 
 export const getShowtimeInfoAction = (maLichChieu) => {
   return async (dispatch) => {
-    dispatch(startLoadingAction());
+    // dispatch(startLoadingAction());
     try {
       const response = await showtimeService.getShowtimeInfo(maLichChieu);
       dispatch({
@@ -81,9 +81,9 @@ export const getShowtimeInfoAction = (maLichChieu) => {
     } catch (error) {
       console.log(error.response);
     }
-    setTimeout(() => {
-      dispatch(stopLoadingAction());
-    }, 1000);
+    // setTimeout(() => {
+    //   dispatch(stopLoadingAction());
+    // }, 1000);
   };
 };
 

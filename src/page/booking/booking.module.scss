@@ -2,20 +2,21 @@
 
 .booking__section {
   padding-top: 6rem;
-  animation: fade 2s ease;
+  // animation: fade 2s ease;
   .booking__wrapper {
+    max-width: 1400px;
     margin: 0 auto;
     .booking__content {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       .main {
-        width: 95rem;
         border-left: 1px solid #e2e2e2;
+        margin-bottom: 2rem;
       }
       .sub {
         padding: 3rem 2rem 0;
         border-right: 1px solid #e2e2e2;
-        width: calc(100% - 105rem);
         height: auto;
         overflow: hidden;
         box-shadow: -5px 0 10px #e2e2e2;
@@ -25,11 +26,14 @@
 }
 
 .bottom {
+  width: 100%;
+  overflow-x: auto;
   .cinema__layout {
-    width: 100%;
     .screen {
+      width: 90%;
+      min-width: 818px;
       perspective: 100px;
-      margin: 3rem 5rem;
+      margin: 3rem auto;
       background: black;
       color: white;
       text-align: center;
@@ -66,8 +70,11 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      min-width: 818px;
+      max-width: 818px;
       width: 80%;
       margin: 5rem auto;
+      padding: 0 2rem;
       position: relative;
       .center {
         display: flex;
