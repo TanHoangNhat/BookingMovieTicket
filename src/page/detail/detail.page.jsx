@@ -178,7 +178,7 @@ const Detail = () => {
                     </div>
                   </div>
                   <div className={s.background__blur}>
-                    <img src={hinhAnh} />
+                    <img src={renderImageUrl(hinhAnh)} />
                   </div>
                   <div className={s.gradient}></div>
                 </div>
