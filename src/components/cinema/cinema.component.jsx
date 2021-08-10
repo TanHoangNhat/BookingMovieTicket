@@ -12,8 +12,11 @@ import style from "./cinema.module.scss";
 import * as DayJS from "dayjs";
 import clsx from "clsx";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
+import { NavLink, useHistory } from "react-router-dom";
+import swal from "sweetalert";
 
 const Cinema = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const cinemaSystemList = useSelector(
     (state) => state.cinema.cinemaSystemList
@@ -37,6 +40,25 @@ const Cinema = () => {
 
   const handleChangeCinemaGroup = (event, code) => {
     dispatch(getShowtimeByCinemaGroupAction(code));
+  };
+
+  const handleShowtimeClick = (maLichChieu) => {
+    if (JSON.parse(localStorage.getItem("hoTen"))) {
+      history.push(`/booking/${maLichChieu}`);
+    } else {
+      swal({
+        title: "Bạn chưa đăng nhập!!!",
+        text: "Bạn cần đăng nhập để tiếp tục đặt vé!",
+        icon: "warning",
+        buttons: ["Hủy", "Đăng nhập"],
+        dangerMode: true,
+        className: "custom__swal"
+      }).then((willSignIn) => {
+        if (willSignIn) {
+          history.push(`/sign-in`);
+        }
+      });
+    }
   };
 
   const renderCinemaSystem = () => {
@@ -139,7 +161,7 @@ const Cinema = () => {
       })
       .map((l) => {
         return (
-          <a href="#">
+          <a onClick={() => handleShowtimeClick(l.maLichChieu)}>
             <span className={style.date}>
               {DayJS(l.ngayChieuGioChieu).format("MMM D, YYYY")}
             </span>

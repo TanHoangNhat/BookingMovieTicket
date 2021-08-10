@@ -1,6 +1,7 @@
 import {
   SET_USER_DETAIL,
-  GET_USER_LIST_PAGINATION
+  GET_USER_LIST_PAGINATION,
+  LOAD_USER
 } from "../constant/user.constant";
 
 const initialState = {

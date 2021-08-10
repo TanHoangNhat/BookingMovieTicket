@@ -51,7 +51,7 @@ const logoArray = [
 
 const Footer = () => {
   return (
-    <footer className={s.footer__section}>
+    <section className={s.footer__section}>
       <div className={s.footer__wrapper}>
         <div className={s.footer__content}>
           <div className={`row m-0 ${s.footer__info}`}>
@@ -154,7 +154,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </section>
   );
 };
 

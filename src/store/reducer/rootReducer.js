@@ -4,13 +4,13 @@ import { UserReducer } from "./user.reducer";
 import { BookingMovie } from "./bookMovie";
 import { CinemaReducer } from "./cinema.reducer";
 import { ShowtimeReducer } from "./showtime.reducer";
+import { CommonReducer } from "./common.reducer";
 
-
-  
 export const RootReducer = combineReducers({
   movie: ReducerMovie,
   booking: BookingMovie,
   user: UserReducer,
   cinema: CinemaReducer,
-  showtime: ShowtimeReducer
+  showtime: ShowtimeReducer,
+  common: CommonReducer
 });

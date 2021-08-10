@@ -81,12 +81,7 @@ const Films = () => {
       return (
         <SwiperSlide key={index} className={style.films__slide}>
           <div className={style.film__item}>
-            <a
-              target="_blank"
-              onClick={() => {
-                history.push(`/detail/${movie.maPhim}`);
-              }}
-            >
+            <a target="_blank">
               <div
                 className={style.film__image}
                 style={{
@@ -117,7 +112,14 @@ const Films = () => {
                 100 Phút - IMDb - [
                 {Math.round((Math.random() * 5 + 5) * 10) / 10}]
               </div>
-              <a className={style.book}>Mua vé</a>
+              <a
+                className={style.book}
+                onClick={() => {
+                  history.push(`/detail/${movie.maPhim}`);
+                }}
+              >
+                Mua vé
+              </a>
             </div>
           </div>
         </SwiperSlide>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import webLogo from "../../asset/image/web-logo.png";
@@ -7,18 +7,19 @@ import style from "./header.module.scss";
 import button from "../../asset/image/next-session.png";
 import clsx from "clsx";
 import burger from "../../asset/image/menu-options.png";
+import { useSelector } from "react-redux";
 
-function Header({ handleClick }) {
+function Header() {
   const history = useHistory();
   const [openMenu, setOpenMenu] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
+  const userName = JSON.parse(localStorage.getItem("hoTen"));
 
   const handleSignout = () => {
     localStorage.clear();
   };
 
   const renderUserName = () => {
-    const userName = JSON.parse(localStorage.getItem("hoTen"));
     return userName !== null ? (
       <div>
         <span>{userName}</span>
@@ -26,6 +27,22 @@ function Header({ handleClick }) {
       </div>
     ) : (
       <span onClick={() => history.push("/sign-in")}>Đăng nhập</span>
+    );
+  };
+
+  const renderUserInfo = () => {
+    return userName !== null ? (
+      <>
+        <img src={avatar} alt="" />
+        <span> {userName} </span>
+      </>
+    ) : (
+      <span
+        style={{ cursor: "pointer" }}
+        onClick={() => history.push("/sign-in")}
+      >
+        Đăng nhập
+      </span>
     );
   };
 
@@ -40,13 +57,15 @@ function Header({ handleClick }) {
       ""
     );
   };
+  console.log("render");
+  useEffect(() => {}, [userName]);
   return (
     <header className={style.header}>
       <div className={style.header__navbar}>
         <div className={style.navbar__left}>
-          <a className="" href="#">
+          <NavLink className="" to="/home">
             <img src={webLogo} alt="" height="50px" width="50px" />
-          </a>
+          </NavLink>
         </div>
         <div className={style.navbar__center}>
           <ul className={style.navbar__menu}>
@@ -96,10 +115,7 @@ function Header({ handleClick }) {
             })}
           >
             <div className={style.content__top}>
-              <div className={style.user__info}>
-                <img src={avatar} alt="" />
-                <span> TEST </span>
-              </div>
+              <div className={style.user__info}>{renderUserInfo()}</div>
               <img
                 onClick={() => setOpenSidebar(false)}
                 className={style.button__close}
@@ -112,7 +128,20 @@ function Header({ handleClick }) {
               <a className={style.item__link}>Cụm Rạp</a>
               <a className={style.item__link}>Tin Tức</a>
               <a className={style.item__link}>Ứng Dụng</a>
-              <a className={style.item__link}>Đăng xuất</a>
+              {userName !== null ? (
+                // href make component re-render
+                <a
+                  className={style.item__link}
+                  href="#"
+                  onClick={() => {
+                    handleSignout();
+                  }}
+                >
+                  Đăng xuất
+                </a>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

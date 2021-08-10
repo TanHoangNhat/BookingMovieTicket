@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Header from "../../components/header/header.component";
 import { getDetailMovie } from "../../store/action/movie.action";
 import s from "./detail.module.scss";
@@ -11,12 +11,15 @@ import { getShowtimeByMovieAction } from "../../store/action/showtime.action";
 import clsx from "clsx";
 import imgDemo from "../../asset/image/cinemaGroupDemo.jpg";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
+import Loader from "../../components/loader/loader.component";
+import swal from "sweetalert";
 
 const Detail = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const maPhim = useParams().maPhim;
-  const detailMovie = useSelector((state) => state.movie.detail_movie);
-  const { heThongRapChieu } = useSelector(
+  const isLoading = useSelector((state) => state.common.isLoading);
+  const { heThongRapChieu, tenPhim, hinhAnh, ngayKhoiChieu } = useSelector(
     (state) => state.showtime.showtimeListByMovie
   );
   const [cinemaGroup, setCinemaGroup] = useState([]);
@@ -27,6 +30,25 @@ const Detail = () => {
     setCinemaGroup(
       heThongRapChieu.find((sys) => sys.maHeThongRap === code).cumRapChieu
     );
+  };
+
+  const handleShowtimeClick = (maLichChieu) => {
+    if (JSON.parse(localStorage.getItem("hoTen"))) {
+      history.push(`/booking/${maLichChieu}`);
+    } else {
+      swal({
+        title: "Bạn chưa đăng nhập!!!",
+        text: "Bạn cần đăng nhập để tiếp tục đặt vé!",
+        icon: "warning",
+        buttons: ["Hủy", "Đăng nhập"],
+        dangerMode: true,
+        className: "custom__swal"
+      }).then((willSignIn) => {
+        if (willSignIn) {
+          history.push(`/sign-in`);
+        }
+      });
+    }
   };
 
   const renderCinemaSystem = () => {
@@ -80,25 +102,17 @@ const Detail = () => {
   const renderShowtime = (showtimeList) => {
     return showtimeList.map((st) => {
       return (
-        <Link to={`/booking/${st.maLichChieu}`}>
+        <a onClick={() => handleShowtimeClick(st.maLichChieu)}>
           <span className={s.date}>
             {dayjs(st.ngayChieuGioChieu).format("MMM D, YYYY")}
           </span>
           <span className={s.time}>
             {dayjs(st.ngayChieuGioChieu).format("HH:mm")}
           </span>
-        </Link>
+        </a>
       );
     });
   };
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    dispatch(getDetailMovie(maPhim));
-    return () => {
-      abortController.abort();
-    };
-  }, []);
   useEffect(() => {
     const abortController = new AbortController();
     dispatch(getShowtimeByMovieAction(maPhim));
@@ -109,94 +123,98 @@ const Detail = () => {
   return (
     <>
       <Header />
-      <section className={s.detail__section}>
-        <div className={s.detail__wrapper}>
-          <div className={s.detail__content}>
-            <div className={s.content__main}>
-              <div className={s.info}>
-                <div className={`${s.wrapper} row align-items-center`}>
-                  <div className={`col-sm-3 ${s.left}`}>
-                    <img className={`w-100`} src={detailMovie.hinhAnh} alt="" />
-                  </div>
-                  <div className={`${s.middle} text-white col-sm-5`}>
-                    <p>
-                      {dayjs(detailMovie.ngayKhoiChieu).format("DD.MM.YYYY")}
-                    </p>
-                    <p>
-                      <span className={s.rated}>C18</span>
-                      <span className={s.title}>{detailMovie.tenPhim}</span>
-                    </p>
-                    <p>100 phút - 0 IMDb - 2D/Digital</p>
-                  </div>
-                  <div className={`${s.right} col-sm-2`}>
-                    <div className={s.circle__rating}>
-                      <div className={s.circle__border}></div>
-                      <div className={s.circle__fill}>
-                        <div className={s.half}></div>
-                        <span>{randomRating}</span>
-                        <div
-                          style={{
-                            transform: `rotate(${
-                              ((randomRating - 5) * 180) / 5 + 180
-                            }deg)`
-                          }}
-                          className={s.half}
-                        ></div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <section className={s.detail__section}>
+            <div className={s.detail__wrapper}>
+              <div className={s.detail__content}>
+                <div className={s.content__main}>
+                  <div className={s.info}>
+                    <div className={`${s.wrapper} row align-items-center`}>
+                      <div className={`col-sm-3 ${s.left}`}>
+                        <img className={`w-100`} src={hinhAnh} alt="" />
+                      </div>
+                      <div className={`${s.middle} text-white col-sm-5`}>
+                        <p>{dayjs(ngayKhoiChieu).format("DD.MM.YYYY")}</p>
+                        <p>
+                          <span className={s.rated}>C18</span>
+                          <span className={s.title}>{tenPhim}</span>
+                        </p>
+                        <p>100 phút - 0 IMDb - 2D/Digital</p>
+                      </div>
+                      <div className={`${s.right} col-sm-2`}>
+                        <div className={s.circle__rating}>
+                          <div className={s.circle__border}></div>
+                          <div className={s.circle__fill}>
+                            <div className={s.half}></div>
+                            <span>{randomRating}</span>
+                            <div
+                              style={{
+                                transform: `rotate(${
+                                  ((randomRating - 5) * 180) / 5 + 180
+                                }deg)`
+                              }}
+                              className={s.half}
+                            ></div>
+                          </div>
+                        </div>
+                        <div className={s.star__rating}>
+                          <img src={star} />
+                          <img src={star} />
+                          <img src={star} />
+                          <img src={star} />
+                        </div>
                       </div>
                     </div>
-                    <div className={s.star__rating}>
-                      <img src={star} />
-                      <img src={star} />
-                      <img src={star} />
-                      <img src={star} />
-                    </div>
                   </div>
+                  <div className={s.background__blur}>
+                    <img src={hinhAnh} />
+                  </div>
+                  <div className={s.gradient}></div>
                 </div>
-              </div>
-              <div className={s.background__blur}>
-                <img src={detailMovie.hinhAnh} />
-              </div>
-              <div className={s.gradient}></div>
-            </div>
-            <div className={s.content__sub}>
-              <div className={`nav nav-tabs ${s.header}`}>
-                <button
-                  className={`${s.header__tab} active`}
-                  data-bs-target="#showtime"
-                  data-bs-toggle="tab"
-                >
-                  Lịch chiếu
-                </button>
-                <button
-                  className={s.header__tab}
-                  data-bs-target="#info"
-                  data-bs-toggle="tab"
-                >
-                  Thông tin
-                </button>
-              </div>
-              <div className={`tab-content ${s.body}`}>
-                <div id="showtime" className="tab-pane fade active show ">
-                  <div className="row m-0">
-                    <div className={`col-md-4 ${s.cinema__system}`}>
-                      <div className="nav nav-pills" role="tablist">
-                        {renderCinemaSystem()}
+                <div className={s.content__sub}>
+                  <div className={`nav nav-tabs ${s.header}`}>
+                    <button
+                      className={`${s.header__tab} active`}
+                      data-bs-target="#showtime"
+                      data-bs-toggle="tab"
+                    >
+                      Lịch chiếu
+                    </button>
+                    <button
+                      className={s.header__tab}
+                      data-bs-target="#info"
+                      data-bs-toggle="tab"
+                    >
+                      Thông tin
+                    </button>
+                  </div>
+                  <div className={`tab-content ${s.body}`}>
+                    <div id="showtime" className="tab-pane fade active show ">
+                      <div className="row m-0">
+                        <div className={`col-md-4 ${s.cinema__system}`}>
+                          <div className="nav nav-pills" role="tablist">
+                            {renderCinemaSystem()}
+                          </div>
+                        </div>
+                        <div className={`col-md-8 ${s.cinema__group}`}>
+                          {renderCinemaGroup()}
+                        </div>
                       </div>
                     </div>
-                    <div className={`col-md-8 ${s.cinema__group}`}>
-                      {renderCinemaGroup()}
+                    <div id="info" className="tab-pane fade ">
+                      bbbbbcccc
                     </div>
                   </div>
                 </div>
-                <div id="info" className="tab-pane fade ">
-                  bbbbbcccc
-                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <Footer />
+          </section>
+          <Footer />
+        </>
+      )}
     </>
   );
 };

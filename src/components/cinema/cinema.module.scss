@@ -206,6 +206,7 @@
     font-size: 14px;
     border: 1px solid #9b9b9b;
     text-align: center;
+    cursor: pointer;
     .date {
       font-size: 12px;
       line-height: 12px;
@@ -220,5 +221,17 @@
     &:hover .time {
       color: red;
     }
+  }
+}
+
+:global(.custom__swal) {
+  will-change: unset !important;
+  button {
+    font-weight: unset;
+    font-size: 18px;
+  }
+  :global(.swal-footer) {
+    display: flex;
+    justify-content: center;
   }
 }

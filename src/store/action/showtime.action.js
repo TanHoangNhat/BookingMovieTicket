@@ -7,6 +7,7 @@ import {
   SET_SELECT_CHAIR,
   SET_SHOWTIME_DETAIL
 } from "../constant/showtime.constant";
+import { startLoadingAction, stopLoadingAction } from "./common.action";
 
 export const createShowtimeAction = (showtime) => {
   return async () => {
@@ -52,6 +53,7 @@ export const getShowtimeByCinemaGroupAction = (payload) => {
 
 export const getShowtimeByMovieAction = (maPhim) => {
   return async (dispatch) => {
+    dispatch(startLoadingAction());
     try {
       const response = await showtimeService.getShowtimeByMovie(maPhim);
       dispatch({
@@ -61,11 +63,15 @@ export const getShowtimeByMovieAction = (maPhim) => {
     } catch (error) {
       console.log(error.response);
     }
+    setTimeout(() => {
+      dispatch(stopLoadingAction());
+    }, 2000);
   };
 };
 
 export const getShowtimeInfoAction = (maLichChieu) => {
   return async (dispatch) => {
+    dispatch(startLoadingAction());
     try {
       const response = await showtimeService.getShowtimeInfo(maLichChieu);
       dispatch({
@@ -75,6 +81,7 @@ export const getShowtimeInfoAction = (maLichChieu) => {
     } catch (error) {
       console.log(error.response);
     }
+    dispatch(stopLoadingAction());
   };
 };
 
@@ -87,6 +94,7 @@ export const setSelectChairAction = (maGhe) => {
 
 export const bookingTicketAction = (maLichChieu, danhSachVe) => {
   return async (dispatch) => {
+    dispatch(startLoadingAction());
     try {
       const taiKhoanNguoiDung = JSON.parse(localStorage.getItem("taiKhoan"));
       const data = {
@@ -94,10 +102,10 @@ export const bookingTicketAction = (maLichChieu, danhSachVe) => {
         taiKhoanNguoiDung,
         danhSachVe
       };
-      const response = await showtimeService.bookingTicket(data);
-      dispatch(getShowtimeInfoAction(maLichChieu));
+      return await showtimeService.bookingTicket(data);
+      // dispatch(getShowtimeInfoAction(maLichChieu));
     } catch (error) {
-      console.log(error.response);
+      return error.response;
     }
   };
 };

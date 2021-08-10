@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 
 import Header from "../components/header/header.component";
@@ -8,30 +8,46 @@ import Cinema from "../components/cinema/cinema.component";
 import News from "../components/news/news.component";
 import Application from "../components/application/application.component";
 import Footer from "../components/footer/footer.component";
+import Loader from "../components/loader/loader.component";
+import { useDispatch, useSelector } from "react-redux";
+import { stopLoadingAction } from "../store/action/common.action";
 
 function Home() {
-  // const refs = {
-  //   LC: useRef(null),
-  //   CR: useRef(null),
-  //   TT: useRef(null),
-  //   UD: useRef(null)
-  // };
-
-  // const handleClick = (params) => {
-  //   tr(refs[params]);
-  // };
-  // const tr = (params) => {
-  //   params.current.scrollIntoView();
-  // };
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.common.isLoading);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(stopLoadingAction());
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   return (
     <>
       <Header />
-      <Carousel />
-      <Films />
-      <Cinema />
-      <News />
-      <Application />
-      <Footer />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {" "}
+          <Carousel />
+          <Films />
+          <Cinema />
+          <News />
+          <Application />
+          <Footer />
+        </>
+      )}
+
+      {/* <Loader /> */}
+      {/* <Header /> */}
+      {/* <Carousel /> */}
+      {/* <Films /> */}
+      {/* <Cinema /> */}
+      {/* <News /> */}
+      {/* <Application /> */}
+      {/* <Footer /> */}
     </>
   );
 }

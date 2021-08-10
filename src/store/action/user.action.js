@@ -1,5 +1,6 @@
 import {
   GET_USER_LIST_PAGINATION,
+  LOAD_USER,
   SET_USER_DETAIL
 } from "../constant/user.constant";
 import { userService } from "../../core/service/user.service";

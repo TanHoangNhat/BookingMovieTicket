@@ -33,7 +33,8 @@ const SignIn = () => {
           button: false,
           timer: 2000
         }).then(() => {
-          history.push("/home");
+          // history.push("/home");
+          history.goBack();
         });
         return true;
       } else {
