@@ -197,9 +197,9 @@ const Booking = () => {
   return (
     <>
       <Header />
-      {/* {isLoading ? (
+      {isLoading ? (
         <Loader />
-      ) : ( */}
+      ) : (
       <section className={s.booking__section}>
         <div className={s.booking__wrapper}>
           <div className={s.booking__content}>
@@ -277,7 +277,7 @@ const Booking = () => {
           </div>
         </div>
       </section>
-      {/* )} */}
+      )}
     </>
   );
 };
