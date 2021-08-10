@@ -136,7 +136,11 @@ const Detail = () => {
                   <div className={s.info}>
                     <div className={`${s.wrapper} row`}>
                       <div className={`col-sm-3 col-5 ${s.left}`}>
-                        <img className={`w-100`} src={hinhAnh} alt="" />
+                        <img
+                          className={`w-100`}
+                          src={renderImageUrl(hinhAnh)}
+                          alt=""
+                        />
                       </div>
                       <div className={`${s.middle} text-white col-sm-5 col-12`}>
                         <p>{dayjs(ngayKhoiChieu).format("DD.MM.YYYY")}</p>

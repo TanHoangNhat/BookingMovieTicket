@@ -71,11 +71,6 @@ const Films = () => {
     }
   };
 
-  // const renderImageUrl = (url) => {
-  //   if (!url.includes("https")) return url.replace("http", "https");
-  //   return url;
-  // };
-
   const renderMovies = (movieList) => {
     return movieList?.map((movie, index) => {
       return (
