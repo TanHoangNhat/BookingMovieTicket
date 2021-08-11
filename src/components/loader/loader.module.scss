@@ -1,3 +1,5 @@
+@import "../../asset/basicSCSS/responsive.scss";
+
 .loading {
   position: fixed;
   top: 0;
@@ -13,6 +15,7 @@
   img {
     position: absolute;
     width: 10%;
+    min-width: 150px;
   }
   .tada {
     animation-name: tada;

@@ -3,6 +3,7 @@
 .films__section {
   padding-top: 60px;
   height: 100%;
+  animation: fade 3s ease;
   .films__content {
     .films__header {
       display: flex;
@@ -231,5 +232,21 @@
     &:hover .book {
       opacity: 1;
     }
+  }
+}
+
+.video {
+  width: 90%;
+  max-width: 700px;
+  height: 50%;
+  max-height: 400px;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

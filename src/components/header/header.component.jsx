@@ -124,10 +124,42 @@ function Header() {
               />
             </div>
             <div className={style.content__middle}>
-              <a className={style.item__link}>Lịch Chiếu</a>
-              <a className={style.item__link}>Cụm Rạp</a>
-              <a className={style.item__link}>Tin Tức</a>
-              <a className={style.item__link}>Ứng Dụng</a>
+              <HashLink
+                onClick={() => {
+                  setOpenSidebar(false);
+                }}
+                className={style.item__link}
+                to="/home#filmsBlock"
+              >
+                Lịch Chiếu
+              </HashLink>
+              <HashLink
+                onClick={() => {
+                  setOpenSidebar(false);
+                }}
+                className={style.item__link}
+                to="/home#cinemaBlock"
+              >
+                Cụm Rạp
+              </HashLink>
+              <HashLink
+                onClick={() => {
+                  setOpenSidebar(false);
+                }}
+                className={style.item__link}
+                to="/home#newsBlock"
+              >
+                Tin Tức
+              </HashLink>
+              <HashLink
+                onClick={() => {
+                  setOpenSidebar(false);
+                }}
+                className={style.item__link}
+                to="/home#appBlock"
+              >
+                Ứng Dụng
+              </HashLink>
               {userName !== null ? (
                 // href make component re-render
                 <a

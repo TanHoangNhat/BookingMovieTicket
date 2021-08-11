@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./films.module.scss";
 
 import "swiper/swiper.min.css";
@@ -17,13 +17,41 @@ import { useDispatch, useSelector } from "react-redux";
 import { getListMovie } from "../../store/action/movie.action";
 import { useHistory } from "react-router-dom";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
+import { Fade, makeStyles, Modal } from "@material-ui/core";
 
 // install Swiper modules
 SwiperCore.use([EffectCoverflow, Navigation, Controller, Autoplay]);
 
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3)
+  }
+}));
+
 const Films = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [trailer, setTrailer] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = (trailer) => {
+    setTrailer(trailer);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const list_movie = useSelector((state) => {
     return state.movie.list_movie;
@@ -94,7 +122,10 @@ const Films = () => {
                   </div>
                 </span>
                 <div className={style.overlay}>
-                  <button className={style.play}></button>
+                  <button
+                    onClick={() => handleOpenModal(movie.trailer)}
+                    className={style.play}
+                  ></button>
                 </div>
               </div>
             </a>
@@ -156,6 +187,22 @@ const Films = () => {
           <div className={style.content}></div>
         </div>
       </div>
+      <Modal
+        className={classes.modal}
+        open={openModal}
+        onClose={handleCloseModal}
+        closeAfterTransition
+      >
+        <Fade in={openModal}>
+          <iframe
+            className={style.video}
+            src={`${trailer}?autoplay=1`}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </Fade>
+      </Modal>
     </section>
   );
 };
