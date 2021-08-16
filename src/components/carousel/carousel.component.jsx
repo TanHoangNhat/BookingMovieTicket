@@ -40,13 +40,25 @@ const Carousel = () => {
           <div className={style.button__prev}></div>
           <div className={style.button__next}></div>
           <SwiperSlide>
-            <img className={style.carousel__image} src={img1} alt="" />
+            <div
+              className={style.carousel__image}
+              style={{ backgroundImage: `url('${img1}')` }}
+              alt=""
+            ></div>
           </SwiperSlide>
           <SwiperSlide>
-            <img className={style.carousel__image} src={img2} alt="" />
+            <div
+              className={style.carousel__image}
+              style={{ backgroundImage: `url('${img2}')` }}
+              alt=""
+            ></div>
           </SwiperSlide>
           <SwiperSlide>
-            <img className={style.carousel__image} src={img3} alt="" />
+            <div
+              className={style.carousel__image}
+              style={{ backgroundImage: `url('${img3}')` }}
+              alt=""
+            ></div>
           </SwiperSlide>
         </Swiper>
       </div>
