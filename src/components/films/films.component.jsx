@@ -14,10 +14,13 @@ import SwiperCore, {
   Autoplay
 } from "swiper/core";
 import { useDispatch, useSelector } from "react-redux";
-import { getListMovie } from "../../store/action/movie.action";
+import { getMovieListAction } from "../../store/action/movie.action";
 import { useHistory } from "react-router-dom";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
 import { Fade, makeStyles, Modal } from "@material-ui/core";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 // install Swiper modules
 SwiperCore.use([EffectCoverflow, Navigation, Controller, Autoplay]);
@@ -53,12 +56,12 @@ const Films = () => {
     setOpenModal(false);
   };
 
-  const list_movie = useSelector((state) => {
-    return state.movie.list_movie;
+  const movieList = useSelector((state) => {
+    return state.movie.movieList;
   });
 
-  const nowShowingList = list_movie.slice(21, 41);
-  const upComingList = list_movie.slice(41, 61);
+  const nowShowingList = movieList.slice(21, 41);
+  const upComingList = movieList.slice(41, 61);
 
   const swiperSettings = {
     loop: true,
@@ -154,11 +157,18 @@ const Films = () => {
   };
 
   useEffect(() => {
-    dispatch(getListMovie());
+    dispatch(getMovieListAction());
   }, []);
   return (
     <section id="filmsBlock" className={style.films__section}>
-      <div className={style.films__content}>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="50"
+        data-aos-duration="600"
+        data-aos-easing="ease-in-out"
+        data-aos-anchor-placement="top-center"
+        className={style.films__content}
+      >
         <div className={`nav nav-tabs ${style.films__header}`}>
           <button
             name="nowShowing"

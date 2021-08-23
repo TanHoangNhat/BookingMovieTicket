@@ -90,6 +90,46 @@
       color: white;
       display: inline-block;
     }
+    .play__trailer {
+      margin-top: 6px;
+      // background: linear-gradient(60deg, #fbbd61, #fa5238, #fa5238, #fa5238);
+      background: #fa5238;
+      border: none;
+      color: white;
+      font-size: 16px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      height: 44px;
+      border-radius: 22px;
+      letter-spacing: 3px;
+      transition: 0.2s all;
+      position: relative;
+      overflow: hidden;
+      &:after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(
+          60deg,
+          transparent,
+          transparent,
+          #fbbd61,
+          transparent,
+          transparent
+        );
+        transform: translateX(-50%);
+        top: 0;
+        left: 0;
+        transition: 0.3s ease-in-out;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:hover:after {
+        transform: translateX(50%);
+      }
+    }
   }
 }
 .right {
@@ -334,6 +374,13 @@
       }
     }
   }
+}
+
+.video {
+  width: 90%;
+  max-width: 700px;
+  height: 50%;
+  max-height: 400px;
 }
 
 @keyframes fade {

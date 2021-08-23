@@ -26,28 +26,14 @@ function Home() {
 
   return (
     <>
+      <Loader />
       <Header />
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <Carousel />
-          <Films />
-          <Cinema />
-          <News />
-          <Application />
-          <Footer />
-        </>
-      )}
-
-      {/* <Loader /> */}
-      {/* <Header /> */}
-      {/* <Carousel /> */}
-      {/* <Films /> */}
-      {/* <Cinema /> */}
-      {/* <News /> */}
-      {/* <Application /> */}
-      {/* <Footer /> */}
+      <Carousel />
+      <Films />
+      <Cinema />
+      <News />
+      <Application />
+      <Footer />
     </>
   );
 }

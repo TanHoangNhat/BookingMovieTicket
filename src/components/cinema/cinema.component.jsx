@@ -12,8 +12,11 @@ import style from "./cinema.module.scss";
 import * as DayJS from "dayjs";
 import clsx from "clsx";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const Cinema = () => {
   const history = useHistory();
@@ -22,9 +25,6 @@ const Cinema = () => {
     (state) => state.cinema.cinemaSystemList
   );
   const cinemaGroupList = useSelector((state) => state.cinema.cinemaGroupList);
-  // const movieListSystem = useSelector(
-  //   (state) => state.showtime.showtimeListBySystem
-  // );
   const movieList = useSelector(
     (state) => state.showtime.showtimeListByGroup.danhSachPhim
   );
@@ -173,10 +173,6 @@ const Cinema = () => {
       });
   };
 
-  // const renderImageUrl = (url) => {
-  //   if (!url.includes("https")) return url.replace("http", "https");
-  //   return url;
-  // };
   useEffect(() => {
     dispatch(getCinemaSystemListAction());
   }, []);
@@ -187,13 +183,17 @@ const Cinema = () => {
       getShowtimeByCinemaSystemAction(cinemaSystemList[0]?.maHeThongRap)
     );
   }, [cinemaSystemList]);
-  // useEffect(() => {
-  //   dispatch(getShowtimeByCinemaGroupAction(cinemaGroupList[0]?.maCumRap));
-  // }, [movieListSystem]);
 
   return (
     <section id="cinemaBlock" className={style.cinema__section}>
-      <div className={style.wrapper}>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="50"
+        data-aos-duration="600"
+        data-aos-easing="ease-in-out"
+        data-aos-anchor-placement="top-center"
+        className={style.wrapper}
+      >
         <div className="row m-0">
           <div className={`col-md-1 col-sm-12 ${style.cinema__system}`}>
             <ul className="nav nav-pills">{renderCinemaSystem()}</ul>

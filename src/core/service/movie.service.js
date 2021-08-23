@@ -10,6 +10,13 @@ class MovieService {
     });
   };
 
+  getMovieList = (groupID) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyPhim/LayDanhSachPhim?maNhom=${groupID}`,
+      method: "GET"
+    });
+  };
+
   deleteMovie = (data) => {
     return axios({
       url: `${DOMAIN}/api/QuanLyPhim/XoaPhim?MaPhim=${data}`,

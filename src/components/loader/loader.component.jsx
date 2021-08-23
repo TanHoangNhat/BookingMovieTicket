@@ -5,7 +5,13 @@ import React from "react";
 const Loader = () => {
   return (
     <div className={s.loading}>
-      <img src={loading} className={s.tada} />
+      <div className={s.loading__content}>
+        <img src={loading} className={s.tada} />
+        <img src={loading} className={s.tada} />
+        <img src={loading} className={s.tada} />
+        <img src={loading} className={s.tada} />
+        <img src={loading} className={s.tada} />
+      </div>
     </div>
   );
 };

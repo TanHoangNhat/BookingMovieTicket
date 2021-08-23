@@ -1,23 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "[ANTEBELLUM] - 4 lý do không thể bỏ lỡ siêu phẩm kinh dị Antebellum: Bẫy Thực Tại Kinh Hoàng",
-    "description": "Không đi theo lối mòn máu me, hù dọa mà đầu tư khai thác những mảng tối của xã hội trên nền một câu chuyện kinh dị, có sự tham gia của nhà sản xuất đã làm nên thành công của loạt tác phẩm ấn tượng “Get Out”, “Us” hay “BlacKkKlansman”, và còn nhiều lý do khác khiến người yêu phim không thể bỏ lỡ",
-    "like": 75,
-    "comment": 224,
-    "image": "https://s3img.vcdn.vn/123phim/2020/11/antebellum-4-ly-do-khong-the-bo-lo-sieu-pham-kinh-di-antebellum-bay-thuc-tai-kinh-hoang-16045678023913.png",
-    "image2": "https://s3img.vcdn.vn/123phim/2020/06/antebellum-trailer-cuoi-cung-khong-he-lo-bat-cu-thong-tin-gi-them-15929866818923.jpg"
-  },
-  {
-    "id": 2,
-    "title": "Dàn diễn viên 'siêu hot' góp mặt trong Bloodshot gồm có những ai?",
-    "description": "Là tác phẩm mở màn cho Vũ trụ Điện ảnh Valiant, chắc hẳn những cái tên bảo chứng phòng vé cũng là lý do sẽ mang đến thành công cho Bloodshot.",
-    "like": 73,
-    "comment": 782,
-    "image": "https://s3img.vcdn.vn/123phim/2020/03/837f23782617347393261b53bb9e43cc.jpg",
-    "image2": "https://s3img.vcdn.vn/123phim/2020/02/64a5c4dee966d34059ab4b95e75ea7ce.jpg"
-  },
-  {
     "id": 3,
     "title": "Công thức nào đã giúp Pixar lấy được cả nụ cười lẫn nước mắt của khán giả?",
     "description": "Onward sẽ thực sự tiếp nối thành công của những tác phẩm tiền nhiệm?",
@@ -88,23 +70,5 @@
     "comment": 624,
     "image": "https://s3img.vcdn.vn/123phim/2020/07/DSCF6648_Greta%20De%20Lazzaris_color-48b6c1.jpg",
     "image2": "https://s3img.vcdn.vn/123phim/2020/07/5-ly-do-khien-ban-khong-the-bo-qua-bo-phim-cau-be-nguoi-go-pinocchio-15959331601790.png"
-  },
-  {
-    "id": 11,
-    "title": "Những nhân vật có thể quay trở lại trong The Matrix 4",
-    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error magnam minima consequatur? Hic accusamus ad corrupti repellendus commodi. Itaque eius in at est tempore quo minima iste ut eum perspiciatis ex dignissimos nam, possimus modi odit eveniet placeat excepturi laudantium ducimus quas magni deserunt quibusdam! Natus consequatur amet itaque tempora.",
-    "like": 1257,
-    "comment": 358,
-    "image": "https://s3img.vcdn.vn/123phim/2020/06/matrix03205-ec5263.jpg",
-    "image2": "https://s3img.vcdn.vn/123phim/2020/06/nhung-nhan-vat-co-the-quay-tro-lai-trong-the-matrix-4-15918601734667.jpg"
-  },
-  {
-    "id": 12,
-    "title": "Đâu là những nhân vật đáng nhớ xuất thân từ Studio Ghibli?",
-    "description": "Nếu như xưởng phim hoạt hình Pixar “làm mưa làm gió” tại khu vực Bắc Mỹ, thì Studio Ghibli lại là một 'đế chế' hoạt hình tại xứ sở mặt trời mọc. Được thành lập vào mùa hè năm 1985 tại Nhật Bản, Studio Ghibli gặt hái được nhiều thành công vang dội tại quê nhà lẫn trên đấu trường quốc tế, trong đó đỉnh cao là tượng vàng Oscar cho bộ phim Spirited Away hồi năm 2003.",
-    "like": 12571,
-    "comment": 3631,
-    "image": "https://s3img.vcdn.vn/123phim/2020/03/dau-la-nhung-nhan-vat-dang-nho-xuat-than-trong-studio-ghibli-15852133692121.jpg",
-    "image2": "https://s3img.vcdn.vn/123phim/2020/03/dau-la-nhung-nhan-vat-dang-nho-xuat-than-tu-studio-ghibli-15852140832935.jpg"
   }
 ]

@@ -1,6 +1,6 @@
 import {
   GET_DETAIL_MOVIE,
-  GET_LIST_MOVIE,
+  GET_MOVIE_LIST,
   GET_MOVIE,
   GET_MOVIE_LIST_PAGINATION,
   SET_MOVIE_DETAIL
@@ -8,18 +8,16 @@ import {
 import { api } from "../../core/service/api.service";
 import { movieService } from "../../core/service/movie.service";
 
-export const getListMovie = () => {
-  let url = "api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01";
-  let method = "GET";
+export const getMovieListAction = () => {
   return async (dispatch) => {
     try {
-      const res = await api.get(url, method);
+      const response = await movieService.getMovieList("GP01");
       dispatch({
-        type: GET_LIST_MOVIE,
-        payload: res.data
+        type: GET_MOVIE_LIST,
+        payload: response.data
       });
-    } catch (err) {
-      console.log(err.status);
+    } catch (error) {
+      console.log(error.response);
     }
   };
 };

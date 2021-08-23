@@ -13,18 +13,37 @@ import imgDemo from "../../asset/image/cinemaGroupDemo.jpg";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
 import Loader from "../../components/loader/loader.component";
 import swal from "sweetalert";
+import { Fade, makeStyles, Modal } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+}));
 
 const Detail = () => {
+  const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const maPhim = useParams().maPhim;
   const isLoading = useSelector((state) => state.common.isLoading);
-  const { heThongRapChieu, tenPhim, hinhAnh, ngayKhoiChieu } = useSelector(
-    (state) => state.showtime.showtimeListByMovie
-  );
+  const { heThongRapChieu, tenPhim, hinhAnh, ngayKhoiChieu, trailer } =
+    useSelector((state) => state.showtime.showtimeListByMovie);
   const [cinemaGroup, setCinemaGroup] = useState([]);
 
   const randomRating = Math.round((Math.random() * 4 + 6) * 10) / 10;
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const handleChangeCinemaSystem = (code) => {
     setCinemaGroup(
@@ -151,6 +170,14 @@ const Detail = () => {
                           <span className={s.title}>{tenPhim}</span>
                         </p>
                         <p>100 phút - 0 IMDb - 2D/Digital</p>
+                        <p>
+                          <button
+                            onClick={handleOpenModal}
+                            className={s.play__trailer}
+                          >
+                            Play trailer
+                          </button>
+                        </p>
                       </div>
                       <div className={`${s.right} col-sm-4 col-7`}>
                         <div className={s.circle__rating}>
@@ -219,6 +246,22 @@ const Detail = () => {
                 </div>
               </div>
             </div>
+            <Modal
+              className={classes.modal}
+              open={openModal}
+              onClose={handleCloseModal}
+              closeAfterTransition
+            >
+              <Fade in={openModal}>
+                <iframe
+                  className={s.video}
+                  src={`${trailer}?autoplay=1`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </Fade>
+            </Modal>
           </section>
           <Footer />
         </>

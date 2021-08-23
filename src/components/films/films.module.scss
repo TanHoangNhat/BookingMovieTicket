@@ -172,6 +172,7 @@
     background-color: white;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
     .rated {
       font-size: 14px;
       background-color: #00ac4d;
@@ -184,7 +185,7 @@
       display: inline-block;
     }
     .title {
-      font-family: "SF Medium";
+      // font-family: "SF Medium";
       font-size: 16px;
       color: black;
       line-height: 22px;
@@ -193,18 +194,19 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      transition: 0.4s all;
     }
     .length {
-      font-family: "SF Text Regular";
+      // font-family: "SF Text Regular";
       margin-top: 8px;
       font-size: 1.3rem;
       position: relative;
+      transition: 0.4s all;
     }
     .book {
       position: absolute;
       top: 0;
       left: 0;
-      opacity: 0;
       width: 100%;
       font-family: "SF Text Regular";
       font-size: 18px;
@@ -218,19 +220,18 @@
       border: none;
       background: linear-gradient(to left, #fb4226, #ce3017 100%);
       z-index: 10;
-      &:hover {
-        background: #fb4226;
-      }
+      transform: scaleY(0);
+      transition: 0.4s all;
     }
-
-    &:hover .rated,
-    &:hover .title,
+    &:hover .title {
+      transform: translateY(-50px);
+    }
     &:hover .length {
-      opacity: 0;
+      transform: translateY(50px);
     }
 
     &:hover .book {
-      opacity: 1;
+      transform: scaleY(1);
     }
   }
 }
