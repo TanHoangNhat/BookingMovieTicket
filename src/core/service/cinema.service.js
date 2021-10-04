@@ -1,18 +1,14 @@
-import axios from "axios";
-import { DOMAIN } from "../global/constant";
+import { apiService } from "./api.service";
 
 class CinemaService {
   getCinemaSystemList = () =>
-    axios({
-      url: `${DOMAIN}/api/QuanLyRap/LayThongTinHeThongRap`,
-      method: "GET"
-    });
+    apiService.get("api/QuanLyRap/LayThongTinHeThongRap");
 
-  getCinemaGroupList = (maHeThongRap) =>
-    axios({
-      url: `${DOMAIN}/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`,
-      method: "GET"
-    });
+  getCinemaGroupList = (cinemaSystemID) =>
+    apiService.get(
+      `api/QuanLyRap/LayThongTinCumRapTheoHeThong` +
+        `?maHeThongRap=${cinemaSystemID}`
+    );
 }
 
 export const cinemaService = new CinemaService();

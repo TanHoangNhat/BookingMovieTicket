@@ -1,44 +1,28 @@
-import axios from "axios";
-import { DOMAIN } from "../global/constant";
-import { TOKEN } from "./user.service";
+import { apiService } from "./api.service";
 
 class MovieService {
-  getMovieListPagination = (groupID, pageNumber, itemPerPageNumber) => {
-    return axios({
-      url: `${DOMAIN}/api/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${groupID}&soTrang=${pageNumber}&soPhanTuTrenTrang=${itemPerPageNumber}`,
-      method: "GET"
-    });
-  };
+  getMovieListPagination = (groupID, pageNumber, itemPerPageNumber) =>
+    apiService.get(
+      `api/QuanLyPhim/LayDanhSachPhimPhanTrang` +
+        `?maNhom=${groupID}` +
+        `&soTrang=${pageNumber}` +
+        `&soPhanTuTrenTrang=${itemPerPageNumber}`
+    );
 
-  getMovieList = (groupID) => {
-    return axios({
-      url: `${DOMAIN}/api/QuanLyPhim/LayDanhSachPhim?maNhom=${groupID}`,
-      method: "GET"
-    });
-  };
+  getMovieList = (groupID) =>
+    apiService.get(`api/QuanLyPhim/LayDanhSachPhim?maNhom=${groupID}`);
 
-  deleteMovie = (data) => {
-    return axios({
-      url: `${DOMAIN}/api/QuanLyPhim/XoaPhim?MaPhim=${data}`,
-      method: "DELETE"
-    });
-  };
+  getMovieDetail = (movieID) =>
+    apiService.get(`api/QuanLyPhim/LayThongTinPhim?MaPhim=${movieID}`);
 
-  addMovie = (data) => {
-    return axios({
-      url: `${DOMAIN}/api/QuanLyPhim/ThemPhimUploadHinh`,
-      method: "POST",
-      data
-    });
-  };
+  deleteMovie = (movieID) =>
+    apiService.delete(`api/QuanLyPhim/XoaPhim?MaPhim=${movieID}`);
 
-  updateMovie = (data) => {
-    return axios({
-      url: `${DOMAIN}/api/QuanLyPhim/CapNhatPhimUpload`,
-      method: "POST",
-      data
-    });
-  };
+  addMovie = (data) =>
+    apiService.post(`api/QuanLyPhim/ThemPhimUploadHinh`, data);
+
+  updateMovie = (data) =>
+    apiService.post(`api/QuanLyPhim/CapNhatPhimUpload`, data);
 }
 
 export const movieService = new MovieService();

@@ -1,3 +1,4 @@
+import { GROUP_ID } from "../../core/global/constant";
 import { showtimeService } from "../../core/service/showtime.service";
 import {
   GET_SHOWTIME_INFO,
@@ -27,12 +28,12 @@ export const setShowtimeDetailAction = (payload) => {
   };
 };
 
-export const getShowtimeByCinemaSystemAction = (maHeThongRap) => {
+export const getShowtimeByCinemaSystemAction = (cinemaSystemID) => {
   return async (dispatch) => {
     try {
       const response = await showtimeService.getShowtimeByCinemaSystem(
-        maHeThongRap,
-        "GP01"
+        cinemaSystemID,
+        GROUP_ID
       );
       dispatch({
         type: GET_SHOWTIME_LIST_BY_SYSTEM,
@@ -51,11 +52,11 @@ export const getShowtimeByCinemaGroupAction = (payload) => {
   };
 };
 
-export const getShowtimeByMovieAction = (maPhim) => {
+export const getShowtimeByMovieAction = (movieID) => {
   return async (dispatch) => {
     dispatch(startLoadingAction());
     try {
-      const response = await showtimeService.getShowtimeByMovie(maPhim);
+      const response = await showtimeService.getShowtimeByMovie(movieID);
       dispatch({
         type: GET_SHOWTIME_LIST_BY_MOVIE,
         payload: response.data
@@ -69,11 +70,11 @@ export const getShowtimeByMovieAction = (maPhim) => {
   };
 };
 
-export const getShowtimeInfoAction = (maLichChieu) => {
+export const getShowtimeInfoAction = (showtimeID) => {
   return async (dispatch) => {
     dispatch(startLoadingAction());
     try {
-      const response = await showtimeService.getShowtimeInfo(maLichChieu);
+      const response = await showtimeService.getShowtimeInfo(showtimeID);
       dispatch({
         type: GET_SHOWTIME_INFO,
         payload: response.data
@@ -87,10 +88,10 @@ export const getShowtimeInfoAction = (maLichChieu) => {
   };
 };
 
-export const setSelectChairAction = (maGhe) => {
+export const setSelectChairAction = (chairID) => {
   return {
     type: SET_SELECT_CHAIR,
-    payload: maGhe
+    payload: chairID
   };
 };
 
@@ -105,7 +106,6 @@ export const bookingTicketAction = (maLichChieu, danhSachVe) => {
         danhSachVe
       };
       return await showtimeService.bookingTicket(data);
-      // dispatch(getShowtimeInfoAction(maLichChieu));
     } catch (error) {
       return error.response;
     }

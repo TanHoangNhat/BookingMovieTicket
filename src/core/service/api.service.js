@@ -2,22 +2,29 @@ import axios from "axios";
 import { DOMAIN } from "../global/constant";
 
 class ApiService {
-  get = function (url, method) {
-    return axios({
+  get = (url) =>
+    axios({
       url: `${DOMAIN}/${url}`,
-      method: `${method}`
+      method: "GET"
     });
-  };
-  post = function (url, method, info, token) {
-    return axios({
+  delete = (url) =>
+    axios({
       url: `${DOMAIN}/${url}`,
-      method: method,
-      data: info,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      method: "DELETE"
     });
-  };
+
+  post = (url, data) =>
+    axios({
+      url: `${DOMAIN}/${url}`,
+      method: "POST",
+      data
+    });
+  put = (url, data) =>
+    axios({
+      url: `${DOMAIN}/${url}`,
+      method: "PUT",
+      data
+    });
 }
 
-export let api = new ApiService();
+export const apiService = new ApiService();

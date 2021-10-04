@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Store } from "./store/config/config";
+import { store } from "./store/config/config";
 import { Provider } from "react-redux";
 import "./css/style.css";
 import axios from "axios";
@@ -16,7 +16,7 @@ axios.interceptors.request.use((r) => {
 });
 
 ReactDOM.render(
-  <Provider store={Store}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")

@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import Home from "./page/home";
 import Dashboard from "./admin/page/dashboard/dashboard.page";
-// import { Detail } from "./page/detail";
 import SignIn from "./page/sign-in/sign-in.page";
 import SignUp from "./page/sign-up/sign-up.page";
 import Guard, { GuardBooking } from "./HOC/guard.hoc";

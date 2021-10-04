@@ -51,12 +51,7 @@ const User = () => {
     setCurrentPage(value);
     isSearching
       ? dispatch(
-          searchUserPaginationAction(
-            searchString,
-            "GP01",
-            value,
-            itemPerPageNumber
-          )
+          searchUserPaginationAction(searchString, value, itemPerPageNumber)
         )
       : dispatch(getUserListPaginationAction("GP01", value, itemPerPageNumber));
   };
@@ -142,12 +137,7 @@ const User = () => {
     setSearchString(event.target.value);
     setIsSearching(true);
     dispatch(
-      searchUserPaginationAction(
-        event.target.value,
-        "GP01",
-        1,
-        itemPerPageNumber
-      )
+      searchUserPaginationAction(event.target.value, 1, itemPerPageNumber)
     );
   };
 
@@ -187,7 +177,7 @@ const User = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-    dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
+    dispatch(getUserListPaginationAction(1, itemPerPageNumber));
   }, [itemPerPageNumber]);
 
   return (

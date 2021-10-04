@@ -1,17 +1,46 @@
 import {
-  GET_DETAIL_MOVIE,
   GET_MOVIE_LIST,
-  GET_MOVIE,
+  GET_MOVIE_DETAIL,
   GET_MOVIE_LIST_PAGINATION,
   SET_MOVIE_DETAIL
 } from "../constant/movie.constant";
-import { api } from "../../core/service/api.service";
 import { movieService } from "../../core/service/movie.service";
+import { GROUP_ID } from "../../core/global/constant";
+
+export const addMovieAction = (movie) => {
+  return async () => {
+    try {
+      return await movieService.addMovie(movie);
+    } catch (error) {
+      return error.response;
+    }
+  };
+};
+
+export const deleteMovieAction = (movieID) => {
+  return async () => {
+    try {
+      return await movieService.deleteMovie(movieID);
+    } catch (error) {
+      return error.response;
+    }
+  };
+};
+
+export const updateMovieAction = (movie) => {
+  return async () => {
+    try {
+      return await movieService.updateMovie(movie);
+    } catch (error) {
+      return error.response;
+    }
+  };
+};
 
 export const getMovieListAction = () => {
   return async (dispatch) => {
     try {
-      const response = await movieService.getMovieList("GP01");
+      const response = await movieService.getMovieList(GROUP_ID);
       dispatch({
         type: GET_MOVIE_LIST,
         payload: response.data
@@ -22,34 +51,19 @@ export const getMovieListAction = () => {
   };
 };
 
-export const getMovie = (ds1) => {
-  return {
-    type: GET_MOVIE,
-    payload: ds1
-  };
-};
-
-export const getDetailMovie = (maPhim) => {
-  let url = `api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`;
-  let method = "GET";
+export const getMovieDetailAction = (movieID) => {
   return async (dispatch) => {
     try {
-      const res = await api.get(url, method);
+      const response = await movieService.getMovieDetail(movieID);
       dispatch({
-        type: GET_DETAIL_MOVIE,
-        payload: res.data
+        type: GET_MOVIE_DETAIL,
+        payload: response.data
       });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 };
-
-/**
- * Author: TanHN
- * Date: 03/07/2021
- * Name: getMovieListPaginationAction
- */
 
 export const getMovieListPaginationAction = (
   groupID,
@@ -73,36 +87,6 @@ export const getMovieListPaginationAction = (
   };
 };
 
-export const addMovieAction = (movie) => {
-  return async () => {
-    try {
-      return await movieService.addMovie(movie);
-    } catch (error) {
-      return error.response;
-    }
-  };
-};
-
-export const deleteMovieAction = (maPhim) => {
-  return async () => {
-    try {
-      return await movieService.deleteMovie(maPhim);
-    } catch (error) {
-      return error.response;
-    }
-  };
-};
-
 export const setMovieDetailAction = (movie) => {
   return { type: SET_MOVIE_DETAIL, payload: movie };
-};
-
-export const updateMovieAction = (movie) => {
-  return async () => {
-    try {
-      return await movieService.updateMovie(movie);
-    } catch (error) {
-      return error.response;
-    }
-  };
 };

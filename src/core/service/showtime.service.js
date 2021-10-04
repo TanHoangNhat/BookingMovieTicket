@@ -1,36 +1,25 @@
-import axios from "axios";
-import { DOMAIN } from "../global/constant";
-import { TOKEN } from "./user.service";
+import { apiService } from "./api.service";
 
 class ShowtimeService {
-  createShowtime = (data) => {
-    return axios({
-      url: `${DOMAIN}/api/QuanLyDatVe/TaoLichChieu`,
-      method: "POST",
-      data
-    });
-  };
-  getShowtimeByCinemaSystem = (maHeThongRap, maNhom) =>
-    axios({
-      url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${maNhom}`,
-      method: "GET"
-    });
-  getShowtimeByMovie = (maPhim) =>
-    axios({
-      url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
-      method: "GET"
-    });
-  getShowtimeInfo = (maLichChieu) =>
-    axios({
-      url: `${DOMAIN}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
-      method: "GET"
-    });
-  bookingTicket = (data) =>
-    axios({
-      url: `${DOMAIN}/api/QuanLyDatVe/DatVe`,
-      method: "POST",
-      data
-    });
+  createShowtime = (data) =>
+    apiService.post(`api/QuanLyDatVe/TaoLichChieu`, data);
+
+  getShowtimeByCinemaSystem = (cinemaSystemID, groupID) =>
+    apiService.get(
+      `api/QuanLyRap/LayThongTinLichChieuHeThongRap` +
+        `?maHeThongRap=${cinemaSystemID}` +
+        `&maNhom=${groupID}`
+    );
+
+  getShowtimeByMovie = (movieID) =>
+    apiService.get(`api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieID}`);
+
+  getShowtimeInfo = (showtimeID) =>
+    apiService.get(
+      `api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${showtimeID}`
+    );
+
+  bookingTicket = (data) => apiService.post(`api/QuanLyDatVe/DatVe`, data);
 }
 
 export const showtimeService = new ShowtimeService();

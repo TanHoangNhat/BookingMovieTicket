@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailMovie } from "../../../store/action/movie.action";
+import { getMovieDetailAction } from "../../../store/action/movie.action";
 import { DataGrid } from "@material-ui/data-grid";
 import * as dayjs from "dayjs";
 import ShowtimeForm from "../../components/showtime-form/showtimeForm";
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 const Showtime = () => {
   const dispatch = useDispatch();
   const { lichChieu, tenPhim } = useSelector(
-    (state) => state.movie.detail_movie
+    (state) => state.movie.movieDetail
   );
 
   const classes = useStyles();
@@ -96,7 +96,7 @@ const Showtime = () => {
           button: false,
           timer: 2000
         });
-        dispatch(getDetailMovie(maPhim));
+        dispatch(getMovieDetailAction(maPhim));
         return true;
       } else {
         swal({
@@ -117,7 +117,7 @@ const Showtime = () => {
   // };
 
   useEffect(() => {
-    dispatch(getDetailMovie(maPhim));
+    dispatch(getMovieDetailAction(maPhim));
   }, []);
 
   return (
