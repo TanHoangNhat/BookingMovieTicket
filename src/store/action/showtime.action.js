@@ -33,7 +33,7 @@ export const getShowtimeByCinemaSystemAction = (cinemaSystemID) => {
     try {
       const response = await showtimeService.getShowtimeByCinemaSystem(
         cinemaSystemID,
-        GROUP_ID
+        "GP01"
       );
       dispatch({
         type: GET_SHOWTIME_LIST_BY_SYSTEM,

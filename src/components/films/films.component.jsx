@@ -60,8 +60,8 @@ const Films = () => {
     return state.movie.movieList;
   });
 
-  const nowShowingList = movieList.slice(21, 41);
-  const upComingList = movieList.slice(41, 61);
+  const nowShowingList = movieList.slice(0, 21);
+  const upComingList = movieList.slice(21, 35);
 
   const swiperSettings = {
     loop: true,
