@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Header from "../../components/header/header.component";
-import { getDetailMovie } from "../../store/action/movie.action";
 import s from "./detail.module.scss";
 import * as dayjs from "dayjs";
 import star from "../../asset/image/star1.png";
 import Footer from "../../components/footer/footer.component";
-import { getShowtimeByMovieAction } from "../../store/action/showtime.action";
 import clsx from "clsx";
 import imgDemo from "../../asset/image/cinemaGroupDemo.jpg";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
 import Loader from "../../components/loader/loader.component";
 import swal from "sweetalert";
 import { Fade, makeStyles, Modal } from "@material-ui/core";
+import { getShowtimeListByMovie } from "../../RTK_STORE/action/showtime.action";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -134,7 +133,7 @@ const Detail = () => {
   };
   useEffect(() => {
     const abortController = new AbortController();
-    dispatch(getShowtimeByMovieAction(maPhim));
+    dispatch(getShowtimeListByMovie(maPhim));
     return () => {
       abortController.abort();
     };

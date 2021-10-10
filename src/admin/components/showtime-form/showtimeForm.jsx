@@ -13,16 +13,16 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDateTimePicker
 } from "@material-ui/pickers";
-import {
-  getCinemaGroupListAction,
-  getCinemaListAction,
-  getCinemaSystemListAction
-} from "../../../store/action/cinema.action";
 import { useDispatch, useSelector } from "react-redux";
 import DayJsUtils from "@date-io/dayjs";
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { showtimeValidationSchema } from "../../helper/showtimeValidationSchema";
+import {
+  getCinemaGroupList,
+  getCinemaSystemList
+} from "../../../RTK_STORE/action/cinema.action";
+import { getCinemaList } from "../../../RTK_STORE/slice/cinema.slice";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -108,15 +108,15 @@ const ShowtimeForm = ({ maPhim, handleSubmit }) => {
   };
 
   useEffect(() => {
-    dispatch(getCinemaSystemListAction());
+    dispatch(getCinemaSystemList());
   }, []);
 
   useEffect(() => {
-    if (cinemaSystemCode) dispatch(getCinemaGroupListAction(cinemaSystemCode));
+    if (cinemaSystemCode) dispatch(getCinemaGroupList(cinemaSystemCode));
   }, [cinemaSystemCode]);
 
   useEffect(() => {
-    dispatch(getCinemaListAction(cinemaGroupCode));
+    dispatch(getCinemaList(cinemaGroupCode));
   }, [cinemaGroupCode]);
 
   return (

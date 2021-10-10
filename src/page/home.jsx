@@ -10,14 +10,14 @@ import Application from "../components/application/application.component";
 import Footer from "../components/footer/footer.component";
 import Loader from "../components/loader/loader.component";
 import { useDispatch, useSelector } from "react-redux";
-import { stopLoadingAction } from "../store/action/common.action";
+import { stopLoading } from "../RTK_STORE/slice/common.slice";
 
 function Home() {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.common.isLoading);
+  // const isLoading = useSelector((state) => state.common.isLoading);
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch(stopLoadingAction());
+      dispatch(stopLoading());
     }, 1000);
     return () => {
       clearTimeout(timer);

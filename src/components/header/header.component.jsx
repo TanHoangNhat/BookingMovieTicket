@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import webLogo from "../../asset/image/web-logo.png";
 import avatar from "../../asset/image/avatar.png";
@@ -7,7 +7,6 @@ import style from "./header.module.scss";
 import button from "../../asset/image/next-session.png";
 import clsx from "clsx";
 import burger from "../../asset/image/menu-options.png";
-import { useSelector } from "react-redux";
 
 function Header() {
   const history = useHistory();

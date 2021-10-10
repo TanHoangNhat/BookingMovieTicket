@@ -14,12 +14,12 @@ import SwiperCore, {
   Autoplay
 } from "swiper/core";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieListAction } from "../../store/action/movie.action";
 import { useHistory } from "react-router-dom";
 import { renderImageUrl } from "../../core/helper/renderImageURL";
 import { Fade, makeStyles, Modal } from "@material-ui/core";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { getMovieList } from "../../RTK_STORE/action/movie.action";
 AOS.init();
 
 // install Swiper modules
@@ -157,7 +157,7 @@ const Films = () => {
   };
 
   useEffect(() => {
-    dispatch(getMovieListAction());
+    dispatch(getMovieList());
   }, []);
   return (
     <section id="filmsBlock" className={style.films__section}>

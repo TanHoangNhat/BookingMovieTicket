@@ -5,8 +5,6 @@ import swal from "sweetalert";
 import {
   addMovieAction,
   deleteMovieAction,
-  getMovieListPaginationAction,
-  setMovieDetailAction,
   updateMovieAction
 } from "../../../store/action/movie.action";
 import DataTable from "../../components/data-table/dataTable.component";
@@ -14,6 +12,8 @@ import MovieModal from "../../components/movie-modal/movieModal.component";
 import CommonPagination from "../../components/pagination/pagination.component";
 import TableTopToolbar from "../../components/table-top-toolbar/tableTopToolbar.component";
 import { movieFieldList } from "../../helper/movieFieldList";
+import { getMovieListPagination } from "../../../RTK_STORE/action/movie.action";
+import { setMovieDetail } from "../../../RTK_STORE/slice/movie.slice";
 
 const Movie = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Movie = () => {
 
   const hanldeChangePage = (event, value) => {
     setCurrentPage(value);
-    dispatch(getMovieListPaginationAction("GP01", value, itemPerPageNumber));
+    dispatch(getMovieListPagination({ pageNumber: value, itemPerPageNumber }));
   };
 
   const handleOpenModal = () => {
@@ -48,7 +48,7 @@ const Movie = () => {
   const handleCloseModal = () => {
     setOpenModal(false);
     setIsUpdating(false);
-    dispatch(setMovieDetailAction({}));
+    dispatch(setMovieDetail({}));
   };
 
   const handleAddMovie = async (movie) => {
@@ -63,7 +63,7 @@ const Movie = () => {
         });
         setOpenModal(false);
         setCurrentPage(1);
-        dispatch(getMovieListPaginationAction("GP01", 1, itemPerPageNumber));
+        dispatch(getMovieListPagination({ pageNumber: 1, itemPerPageNumber }));
         return true;
       } else {
         swal({
@@ -97,11 +97,10 @@ const Movie = () => {
               timer: 2000
             });
             dispatch(
-              getMovieListPaginationAction(
-                "GP01",
-                currentPage,
+              getMovieListPagination({
+                pageNumber: currentPage,
                 itemPerPageNumber
-              )
+              })
             );
           } else {
             swal({
@@ -118,7 +117,7 @@ const Movie = () => {
   };
 
   const handleEditMovie = (movie) => {
-    dispatch(setMovieDetailAction(movie));
+    dispatch(setMovieDetail(movie));
     setOpenModal(true);
     setIsUpdating(true);
   };
@@ -135,9 +134,9 @@ const Movie = () => {
         });
         setOpenModal(false);
         setIsUpdating(false);
-        dispatch(setMovieDetailAction({}));
+        dispatch(setMovieDetail({}));
         dispatch(
-          getMovieListPaginationAction("GP01", currentPage, itemPerPageNumber)
+          getMovieListPagination({ pageNumber: currentPage, itemPerPageNumber })
         );
       } else {
         swal({
@@ -153,7 +152,7 @@ const Movie = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-    dispatch(getMovieListPaginationAction("GP01", 1, itemPerPageNumber));
+    dispatch(getMovieListPagination({ pageNumber: 1, itemPerPageNumber }));
   }, [itemPerPageNumber]);
 
   return (

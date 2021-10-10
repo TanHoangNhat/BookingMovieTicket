@@ -9,6 +9,7 @@ import * as dayjs from "dayjs";
 import ShowtimeForm from "../../components/showtime-form/showtimeForm";
 import swal from "sweetalert";
 import { createShowtimeAction } from "../../../store/action/showtime.action";
+import { getMovieDetail } from "../../../RTK_STORE/action/movie.action";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -96,7 +97,7 @@ const Showtime = () => {
           button: false,
           timer: 2000
         });
-        dispatch(getMovieDetailAction(maPhim));
+        dispatch(getMovieDetail(maPhim));
         return true;
       } else {
         swal({
@@ -117,7 +118,7 @@ const Showtime = () => {
   // };
 
   useEffect(() => {
-    dispatch(getMovieDetailAction(maPhim));
+    dispatch(getMovieDetail(maPhim));
   }, []);
 
   return (

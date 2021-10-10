@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieListAction } from "../../store/action/movie.action";
 import { getShowtimeByMovieAction } from "../../store/action/showtime.action";
 import style from "./homeTool.module.scss";
 import * as DayJS from "dayjs";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import { getMovieList } from "../../RTK_STORE/action/movie.action";
 
 const HomeTool = () => {
   const dispatch = useDispatch();
@@ -121,7 +121,7 @@ const HomeTool = () => {
   };
 
   useEffect(() => {
-    dispatch(getMovieListAction());
+    dispatch(getMovieList());
   }, []);
   return (
     <div className={style.home__tool}>

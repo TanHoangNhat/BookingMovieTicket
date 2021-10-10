@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getCinemaGroupListAction,
-  getCinemaSystemListAction
-} from "../../store/action/cinema.action";
-import {
-  getShowtimeByCinemaGroupAction,
-  getShowtimeByCinemaSystemAction
-} from "../../store/action/showtime.action";
 import style from "./cinema.module.scss";
 import * as DayJS from "dayjs";
 import clsx from "clsx";
@@ -16,6 +8,12 @@ import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {
+  getCinemaGroupList,
+  getCinemaSystemList
+} from "../../RTK_STORE/action/cinema.action";
+import { getShowtimeListByCinemaSystem } from "../../RTK_STORE/action/showtime.action";
+import { getShowtimeListByCinemaGroup } from "../../RTK_STORE/slice/showtime.slice";
 AOS.init();
 
 const Cinema = () => {
@@ -26,20 +24,21 @@ const Cinema = () => {
   );
   const cinemaGroupList = useSelector((state) => state.cinema.cinemaGroupList);
   const movieList = useSelector(
-    (state) => state.showtime.showtimeListByGroup.danhSachPhim
+    (state) => state.showtime.showtimeListByGroup?.danhSachPhim
   );
+  console.log(movieList);
 
   const [currentLogo, setCurrentLogo] = useState("");
 
   const handleChangeCinemaSystem = (e, code) => {
     const logo = e.target.querySelector("img").getAttribute("src");
     setCurrentLogo(logo);
-    dispatch(getCinemaGroupListAction(code));
-    dispatch(getShowtimeByCinemaSystemAction(code));
+    dispatch(getCinemaGroupList(code));
+    dispatch(getShowtimeListByCinemaSystem({ cinemaSystemID: code }));
   };
 
   const handleChangeCinemaGroup = (event, code) => {
-    dispatch(getShowtimeByCinemaGroupAction(code));
+    dispatch(getShowtimeListByCinemaGroup(code));
   };
 
   const handleShowtimeClick = (maLichChieu) => {
@@ -117,6 +116,7 @@ const Cinema = () => {
   };
 
   const renderMovie = () => {
+    console.log("rrrr");
     return movieList?.map((movie) => {
       let check = false;
 
@@ -174,14 +174,13 @@ const Cinema = () => {
   };
 
   useEffect(() => {
-    dispatch(getCinemaSystemListAction());
+    dispatch(getCinemaSystemList());
   }, []);
   useEffect(() => {
     setCurrentLogo(cinemaSystemList[0]?.logo);
-    dispatch(getCinemaGroupListAction(cinemaSystemList[0]?.maHeThongRap));
-    dispatch(
-      getShowtimeByCinemaSystemAction(cinemaSystemList[0]?.maHeThongRap)
-    );
+    const cinemaSystemID = cinemaSystemList[0]?.maHeThongRap;
+    dispatch(getCinemaGroupList(cinemaSystemID));
+    dispatch(getShowtimeListByCinemaSystem({ cinemaSystemID }));
   }, [cinemaSystemList]);
 
   return (
