@@ -4,7 +4,7 @@ import { CinemaReducer } from "./slice/cinema.slice";
 import { CommonReducer } from "./slice/common.slice";
 import { MovieReducer } from "./slice/movie.slice";
 import { ShowtimeReducer } from "./slice/showtime.slice";
-import { UserReducer } from "../store/reducer/user.reducer";
+import { UserReducer } from "./slice/user.slice";
 
 const RootReducer = combineReducers({
   cinema: CinemaReducer,

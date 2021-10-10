@@ -8,8 +8,8 @@ import { DataGrid } from "@material-ui/data-grid";
 import * as dayjs from "dayjs";
 import ShowtimeForm from "../../components/showtime-form/showtimeForm";
 import swal from "sweetalert";
-import { createShowtimeAction } from "../../../store/action/showtime.action";
 import { getMovieDetail } from "../../../RTK_STORE/action/movie.action";
+import { showtimeService } from "../../../core/service/showtime.service";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -87,29 +87,28 @@ const Showtime = () => {
         "DD/MM/YYYY HH:mm:ss"
       )
     };
-    return await dispatch(createShowtimeAction(data)).then((r) => {
-      console.log(r);
-      if (r.status === 200) {
-        swal({
-          title: "Success!",
-          text: "Thêm phim thành công",
-          icon: "success",
-          button: false,
-          timer: 2000
-        });
-        dispatch(getMovieDetail(maPhim));
-        return true;
-      } else {
-        swal({
-          title: "Unsuccess!",
-          text: r.data,
-          icon: "error",
-          buttons: "OK",
-          dangerMode: true
-        });
-        return false;
-      }
-    });
+    const response = await showtimeService.createShowtime(data);
+    console.log(response);
+    if (response.status === 200) {
+      swal({
+        title: "Success!",
+        text: response.data,
+        icon: "success",
+        button: false,
+        timer: 2000
+      });
+      dispatch(getMovieDetail(maPhim));
+      return true;
+    } else {
+      swal({
+        title: "Unsuccess!",
+        text: response.data,
+        icon: "error",
+        buttons: "OK",
+        dangerMode: true
+      });
+      return false;
+    }
   };
 
   // const handleEdit = (maLichChieu) => {

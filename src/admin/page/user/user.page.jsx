@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Divider } from "@material-ui/core";
 import { userFieldList } from "../../helper/userFieldList";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addUserAction,
-  deleteUserAction,
-  searchUserPaginationAction,
-  getUserListPaginationAction,
-  updateUserAction,
-  setUserDetailAction
-} from "../../../store/action/user.action";
 import UserModal from "../../components/user-modal/userModal.component";
 import CommonPagination from "../../components/pagination/pagination.component";
 import DataTable from "../../components/data-table/dataTable.component";
 import TableTopToolbar from "../../components/table-top-toolbar/tableTopToolbar.component";
 import swal from "sweetalert";
+import {
+  getUserListPagination,
+  searchUserPagination
+} from "../../../RTK_STORE/action/user.action";
+import { setUserDetail } from "../../../RTK_STORE/slice/user.slice";
+import { userService } from "../../../core/service/user.service";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -38,22 +36,28 @@ const User = () => {
   const [searchString, setSearchString] = useState("");
 
   const handleOpenModal = () => {
+    dispatch(setUserDetail({}));
     setOpenModal(true);
   };
 
   const handleCloseModal = () => {
     setOpenModal(false);
     setIsUpdating(false);
-    dispatch(setUserDetailAction({}));
   };
 
   const hanldeChangePage = (event, value) => {
     setCurrentPage(value);
     isSearching
       ? dispatch(
-          searchUserPaginationAction(searchString, value, itemPerPageNumber)
+          searchUserPagination({
+            searchString,
+            pageNumber: value,
+            itemPerPageNumber
+          })
         )
-      : dispatch(getUserListPaginationAction("GP01", value, itemPerPageNumber));
+      : dispatch(
+          getUserListPagination({ pageNumber: value, itemPerPageNumber })
+        );
   };
 
   const handleChangeItem = (event) => {
@@ -61,30 +65,37 @@ const User = () => {
   };
 
   const handleAddUser = async (user) => {
-    return await dispatch(addUserAction(user)).then((r) => {
-      if (r.status === 200) {
-        swal({
-          title: "Success!",
-          text: "Thêm người dùng thành công",
-          icon: "success",
-          button: false,
-          timer: 2000
-        });
-        setOpenModal(false);
-        setCurrentPage(1);
-        dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
-        return true;
-      } else {
-        swal({
-          title: "Unsuccess!",
-          text: r.data,
-          icon: "error",
-          buttons: "OK",
-          dangerMode: true
-        });
-        return false;
+    const response = await (async () => {
+      try {
+        return await userService.addUser(user);
+      } catch (error) {
+        console.log(error.response);
+        return error.response;
       }
-    });
+    })();
+
+    if (response.status === 200) {
+      swal({
+        title: "Success!",
+        text: "Thêm người dùng thành công",
+        icon: "success",
+        button: false,
+        timer: 2000
+      });
+      setOpenModal(false);
+      setCurrentPage(1);
+      dispatch(getUserListPagination({ pageNumber: 1, itemPerPageNumber }));
+      return true;
+    } else {
+      swal({
+        title: "Unsuccess!",
+        text: response.data,
+        icon: "error",
+        buttons: "OK",
+        dangerMode: true
+      });
+      return false;
+    }
   };
 
   const handleDeleteUser = (taiKhoan) => {
@@ -94,34 +105,40 @@ const User = () => {
       icon: "warning",
       buttons: true,
       dangerMode: true
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
-        dispatch(deleteUserAction(taiKhoan)).then((r) => {
-          if (r.status === 200) {
-            swal({
-              title: "Success!",
-              text: r.data,
-              icon: "success",
-              button: false,
-              timer: 2000
-            });
-            dispatch(
-              getUserListPaginationAction(
-                "GP01",
-                currentPage,
-                itemPerPageNumber
-              )
-            );
-          } else {
-            swal({
-              title: "Unsuccess!",
-              text: r.data,
-              icon: "error",
-              buttons: "OK",
-              dangerMode: true
-            });
+        const response = await (async () => {
+          try {
+            return await userService.deleteUser(taiKhoan);
+          } catch (error) {
+            console.log(error.response);
+            return error.response;
           }
-        });
+        })();
+
+        if (response.status === 200) {
+          swal({
+            title: "Success!",
+            text: response.data,
+            icon: "success",
+            button: false,
+            timer: 2000
+          });
+          dispatch(
+            getUserListPagination({
+              pageNumber: currentPage,
+              itemPerPageNumber
+            })
+          );
+        } else {
+          swal({
+            title: "Unsuccess!",
+            text: response.data,
+            icon: "error",
+            buttons: "OK",
+            dangerMode: true
+          });
+        }
       }
     });
   };
@@ -130,54 +147,64 @@ const User = () => {
     if (event.target.value === "") {
       setIsSearching(false);
       setCurrentPage(1);
-      dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
+      dispatch(getUserListPagination({ pageNumber: 1, itemPerPageNumber }));
       return;
     }
 
     setSearchString(event.target.value);
     setIsSearching(true);
     dispatch(
-      searchUserPaginationAction(event.target.value, 1, itemPerPageNumber)
+      searchUserPagination({
+        searchString: event.target.value,
+        pageNumber: 1,
+        itemPerPageNumber
+      })
     );
   };
 
   const handleEditUser = (user) => {
-    dispatch(setUserDetailAction(user));
+    dispatch(setUserDetail(user));
     setIsUpdating(true);
     setOpenModal(true);
   };
 
-  const handleUpdateUser = (user) => {
-    dispatch(updateUserAction(user)).then((r) => {
-      if (r.status === 200) {
-        swal({
-          title: "Success!",
-          text: "Cập nhật thành công!",
-          icon: "success",
-          button: false,
-          timer: 2000
-        });
-        setOpenModal(false);
-        setIsUpdating(false);
-        dispatch(setUserDetailAction({}));
-        dispatch(
-          getUserListPaginationAction("GP01", currentPage, itemPerPageNumber)
-        );
-      } else {
-        swal({
-          title: "Unsuccess!",
-          text: r.data,
-          icon: "error",
-          buttons: "OK",
-          dangerMode: true
-        });
+  const handleUpdateUser = async (user) => {
+    const response = await (async () => {
+      try {
+        return await userService.updateUser(user);
+      } catch (error) {
+        console.log(error.response);
+        return error.response;
       }
-    });
+    })();
+
+    if (response.status === 200) {
+      swal({
+        title: "Success!",
+        text: "Cập nhật thành công!",
+        icon: "success",
+        button: false,
+        timer: 2000
+      });
+      setOpenModal(false);
+      setIsUpdating(false);
+      dispatch(
+        getUserListPagination({ pageNumber: currentPage, itemPerPageNumber })
+      );
+    } else {
+      swal({
+        title: "Unsuccess!",
+        text: response.data,
+        icon: "error",
+        buttons: "OK",
+        dangerMode: true
+      });
+    }
   };
 
   useEffect(() => {
     setCurrentPage(1);
-    dispatch(getUserListPaginationAction(1, itemPerPageNumber));
+    dispatch(getUserListPagination(1, itemPerPageNumber));
   }, [itemPerPageNumber]);
 
   return (

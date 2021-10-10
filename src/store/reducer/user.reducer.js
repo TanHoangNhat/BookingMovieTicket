@@ -1,25 +1,25 @@
-import {
-  SET_USER_DETAIL,
-  GET_USER_LIST_PAGINATION,
-  LOAD_USER
-} from "../constant/user.constant";
+// import {
+//   SET_USER_DETAIL,
+//   GET_USER_LIST_PAGINATION,
+//   LOAD_USER
+// } from "../constant/user.constant";
 
-const initialState = {
-  userListPagination: [],
-  totalPages: 10,
-  userDetail: {}
-};
+// const initialState = {
+//   userListPagination: [],
+//   totalPages: 10,
+//   userDetail: {}
+// };
 
-export const UserReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case GET_USER_LIST_PAGINATION:
-      state.userListPagination = [...payload.items];
-      state.totalPages = payload.totalPages;
-      return { ...state };
-    case SET_USER_DETAIL:
-      state.userDetail = { ...payload };
-      return { ...state };
-    default:
-      return state;
-  }
-};
+// export const UserReducer = (state = initialState, { type, payload }) => {
+//   switch (type) {
+//     case GET_USER_LIST_PAGINATION:
+//       state.userListPagination = [...payload.items];
+//       state.totalPages = payload.totalPages;
+//       return { ...state };
+//     case SET_USER_DETAIL:
+//       state.userDetail = { ...payload };
+//       return { ...state };
+//     default:
+//       return state;
+//   }
+// };

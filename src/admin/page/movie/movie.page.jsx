@@ -2,11 +2,6 @@ import { Divider } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
-import {
-  addMovieAction,
-  deleteMovieAction,
-  updateMovieAction
-} from "../../../store/action/movie.action";
 import DataTable from "../../components/data-table/dataTable.component";
 import MovieModal from "../../components/movie-modal/movieModal.component";
 import CommonPagination from "../../components/pagination/pagination.component";
@@ -14,6 +9,7 @@ import TableTopToolbar from "../../components/table-top-toolbar/tableTopToolbar.
 import { movieFieldList } from "../../helper/movieFieldList";
 import { getMovieListPagination } from "../../../RTK_STORE/action/movie.action";
 import { setMovieDetail } from "../../../RTK_STORE/slice/movie.slice";
+import { movieService } from "../../../core/service/movie.service";
 
 const Movie = () => {
   const dispatch = useDispatch();
@@ -42,76 +38,86 @@ const Movie = () => {
   };
 
   const handleOpenModal = () => {
+    dispatch(setMovieDetail({}));
     setOpenModal(true);
   };
 
   const handleCloseModal = () => {
     setOpenModal(false);
     setIsUpdating(false);
-    dispatch(setMovieDetail({}));
   };
 
   const handleAddMovie = async (movie) => {
-    return await dispatch(addMovieAction(movie)).then((r) => {
-      if (r.status === 200) {
-        swal({
-          title: "Success!",
-          text: "Thêm phim thành công",
-          icon: "success",
-          button: false,
-          timer: 2000
-        });
-        setOpenModal(false);
-        setCurrentPage(1);
-        dispatch(getMovieListPagination({ pageNumber: 1, itemPerPageNumber }));
-        return true;
-      } else {
-        swal({
-          title: "Unsuccess!",
-          text: r.data,
-          icon: "error",
-          buttons: "OK",
-          dangerMode: true
-        });
-        return false;
-      }
-    });
+    const response = await movieService.addMovie(movie);
+
+    console.log(response);
+    if (response.status === 200) {
+      swal({
+        title: "Success!",
+        text: "Thêm phim thành công",
+        icon: "success",
+        button: false,
+        timer: 2000
+      });
+      setOpenModal(false);
+      setCurrentPage(1);
+      dispatch(getMovieListPagination({ pageNumber: 1, itemPerPageNumber }));
+      return true;
+    } else {
+      swal({
+        title: "Unsuccess!",
+        text: response.data,
+        icon: "error",
+        buttons: "OK",
+        dangerMode: true
+      });
+      return false;
+    }
   };
 
-  const handleDeleteMovie = (maPhim) => {
+  const handleDeleteMovie = (movieID) => {
     swal({
       title: "Are you sure?",
       text: "Bạn có chắc chắn muốn xóa phim này?",
       icon: "warning",
       buttons: true,
       dangerMode: true
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
-        dispatch(deleteMovieAction(maPhim)).then((r) => {
-          if (r.status === 200) {
-            swal({
-              title: "Success!",
-              text: r.data,
-              icon: "success",
-              button: false,
-              timer: 2000
-            });
-            dispatch(
-              getMovieListPagination({
-                pageNumber: currentPage,
-                itemPerPageNumber
-              })
-            );
-          } else {
-            swal({
-              title: "Unsuccess!",
-              text: r.data,
-              icon: "error",
-              buttons: "OK",
-              dangerMode: true
-            });
+        const response = await (async () => {
+          try {
+            return await movieService.deleteMovie(movieID);
+          } catch (error) {
+            console.log(error);
+            return error.response;
           }
-        });
+        })();
+
+        if (!response) return;
+
+        if (response.status === 200) {
+          swal({
+            title: "Success!",
+            text: response.data,
+            icon: "success",
+            button: false,
+            timer: 2000
+          });
+          dispatch(
+            getMovieListPagination({
+              pageNumber: currentPage,
+              itemPerPageNumber
+            })
+          );
+        } else {
+          swal({
+            title: "Unsuccess!",
+            text: response.data,
+            icon: "error",
+            buttons: "OK",
+            dangerMode: true
+          });
+        }
       }
     });
   };
@@ -122,32 +128,31 @@ const Movie = () => {
     setIsUpdating(true);
   };
 
-  const handleUpdateMovie = (movie) => {
-    dispatch(updateMovieAction(movie)).then((r) => {
-      if (r.status === 200) {
-        swal({
-          title: "Success!",
-          text: "Cập nhật thành công!",
-          icon: "success",
-          button: false,
-          timer: 2000
-        });
-        setOpenModal(false);
-        setIsUpdating(false);
-        dispatch(setMovieDetail({}));
-        dispatch(
-          getMovieListPagination({ pageNumber: currentPage, itemPerPageNumber })
-        );
-      } else {
-        swal({
-          title: "Unsuccess!",
-          text: r.data,
-          icon: "error",
-          buttons: "OK",
-          dangerMode: true
-        });
-      }
-    });
+  const handleUpdateMovie = async (movie) => {
+    const response = await movieService.updateMovie(movie);
+    if (response.status === 200) {
+      swal({
+        title: "Success!",
+        text: "Cập nhật phim thành công!",
+        icon: "success",
+        button: false,
+        timer: 2000
+      });
+      setOpenModal(false);
+      setIsUpdating(false);
+      dispatch(setMovieDetail({}));
+      dispatch(
+        getMovieListPagination({ pageNumber: currentPage, itemPerPageNumber })
+      );
+    } else {
+      swal({
+        title: "Unsuccess!",
+        text: response.data,
+        icon: "error",
+        buttons: "OK",
+        dangerMode: true
+      });
+    }
   };
 
   useEffect(() => {
