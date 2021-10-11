@@ -4,8 +4,8 @@ import style from "./sign-in.module.scss";
 import logo from "../../asset/image/group@2x.png";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { signInSignUpAction } from "../../store/action/user.action";
 import swal from "sweetalert";
+import { signInSignUp } from "../../RTK_STORE/action/user.action";
 
 const SignIn = () => {
   const history = useHistory();
@@ -23,8 +23,7 @@ const SignIn = () => {
   });
 
   const handleSubmit = (values) => {
-    // dispatch(signInAction(values));
-    dispatch(signInSignUpAction(values, true)).then((r) => {
+    dispatch(signInSignUp(values, true)).then((r) => {
       if (r.status === 200) {
         swal({
           title: "Đăng nhập thành công!",
@@ -33,7 +32,6 @@ const SignIn = () => {
           button: false,
           timer: 2000
         }).then(() => {
-          // history.push("/home");
           history.goBack();
         });
         return true;

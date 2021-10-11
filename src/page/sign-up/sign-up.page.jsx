@@ -5,8 +5,8 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import { userValidationSchema } from "../../admin/helper/userValidationSchema";
 import { useDispatch } from "react-redux";
-import { signInSignUpAction } from "../../store/action/user.action";
 import swal from "sweetalert";
+import { signInSignUp } from "../../RTK_STORE/action/user.action";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const SignUp = () => {
   });
 
   const handleSubmit = (values) => {
-    dispatch(signInSignUpAction(values, false)).then((r) => {
+    dispatch(signInSignUp(values, false)).then((r) => {
       if (r.status === 200) {
         swal({
           title: "Đăng ký thành công!",
