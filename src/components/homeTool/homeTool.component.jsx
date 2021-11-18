@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getShowtimeByMovieAction } from "../../store/action/showtime.action";
+// import { getShowtimeByMovieAction } from "../../store/action/showtime.action";
 import style from "./homeTool.module.scss";
 import * as DayJS from "dayjs";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import { getMovieList } from "../../RTK_STORE/action/movie.action";
+import { getShowtimeListByMovie } from "../../RTK_STORE/action/showtime.action";
 
 const HomeTool = () => {
   const dispatch = useDispatch();
@@ -22,8 +23,9 @@ const HomeTool = () => {
   const cinemaGroupList = cinemaSystem?.cumRapChieu;
   const showtimeList = cinemaGroup?.lichChieuPhim;
 
-  const handleChooseMovie = (movieCode, movieName) => {
-    dispatch(getShowtimeByMovieAction(movieCode));
+  const handleChooseMovie = (movieID, movieName) => {
+    // dispatch(getShowtimeByMovieAction(movieCode));
+    dispatch(getShowtimeListByMovie(movieID));
     setMovie(movieName);
     setCinemaSystem(null);
     setCinemaGroup(null);
